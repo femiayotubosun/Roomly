@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/user/style.css') }}">
+    <title>Dashboard</title>
+</head>
+<body>
+    <div class="container">
+        <div class="dashboard-container">
+            <div class="dash-nav">
+                <div class="header">
+                    <h3>Your Dashboard</h3>
+                </div>
+            </div>
+            <div class="dash-main">
+                <div class="dash-top">
+                    <div class="burger">
+                        <div class="line"></div>
+                        <div class="line"></div>
+                        <div class="line"></div>
+                    </div>
+                </div>
+                <div class="dash-sidebar">
+                    <div class="room">
+                        <a class="sidebar-button">
+                            <i class="fas fa-cog"></i>    
+                            Rooms
+                        </a>
+                    </div>
+                    <div class="tools">
+                        <a class="sidebar-button home">
+                            <i class="fas fa-home"></i>    
+                            Home
+                        </a>
+                        <a class="sidebar-button notification">
+                            <i class="far fa-bell"></i>
+                            Notifications
+                        </a>
+                        <a class="sidebar-button profile">
+                            <i class="far fa-user"></i>
+                            
+                            Profile</a>
+                        <a class="sidebar-button settings">
+                            <i class="fas fa-cog"></i>    
+                            Settings
+                        </a>
+
+                    </div>
+                    <div class="logout">
+                        <a href="/logout" class="sidebar-button logout">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Logout
+                        </a>
+                </div>
+                <div class="dash-content">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
