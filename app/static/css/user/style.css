@@ -341,3 +341,21 @@ form {
   justify-content: space-between;
   color: #355070;
 }
+
+.error {
+  color: red;
+  font-size: 12px;
+  text-align: center;
+}
+
+.normal {
+  color: yellow;
+  font-size: 12px;
+  text-align: center;
+}
+
+.success {
+  color: green;
+  font-size: 12px;
+  text-align: center;
+}

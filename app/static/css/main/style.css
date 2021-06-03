@@ -377,3 +377,13 @@ input[type="checkbox"] {
   height: 1em;
   width: 1em;
 }
+
+.error {
+  color: red;
+  font-size: 12px;
+}
+
+.success {
+  color: green;
+  font-size: 12px;
+}

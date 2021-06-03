@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, flash, url_for, request
+from flask import Blueprint, render_template, redirect, flash, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required
 from app.main.forms import SignUpForm, SignInForm
@@ -22,18 +22,17 @@ def signup():
         password = request.form['password']
 
         user = User.query.filter_by(username=username).first()
-        print(user)
 
         # Check if user already exists
         if user:
-            print('User exits')
-            flash('User already exists')
+            flash('Username already exists', 'error')
             return redirect(url_for('main.homepage'))
 
         new_user = User(email=email, username=username,
                         password=generate_password_hash(password, method='sha256'))
 
         new_user.create()
+        flash('Sign-up successful. Please Sign-in.', 'success')
         return {
             'message': 'SUCCESS'
         }
@@ -49,7 +48,7 @@ def signin():
         user = User.query.filter_by(username=username).first()
         # Check if user exists and correct password
         if not user or not check_password_hash(user.password, password):
-            print('Please check your login details and try again.')
+            flash(u'Invalid Username or password provided', 'error')
             return redirect(url_for('main.homepage'))
 
         # Login user

@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, url_for, request
+from flask import Blueprint, render_template, url_for, request, redirect, flash
 from flask_login import current_user
 from flask_login.utils import login_required
 from app.exts import db
@@ -12,10 +12,14 @@ room_bp = Blueprint('room_bp', __name__, template_folder='templates')
 @room_bp.route('/<roomId>', methods=['GET', 'POST'])
 @login_required
 def room(roomId):
+    # Check if user has done traits
+    user_traits = get_one_query(UserTrait, current_user.id)
+    if not user_traits:
+        flash('Please fill traits before picking your room', 'error')
+        return redirect(url_for('user_bp.traits'))
+
     room = get_one_query(Room, roomId)
-
     occupants_match = []
-
     user_traits = get_one_query(UserTrait, current_user.id)
 
     if user_traits and len(room.users) >= 1:

@@ -1,5 +1,5 @@
 from app.common.algorithms import match_traits, sort_rooms_by_match
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import login_required, current_user
 from werkzeug.utils import redirect
 from app.user.forms import ProfileForm
@@ -14,6 +14,8 @@ user_bp = Blueprint('user_bp', __name__, template_folder='templates')
 @user_bp.route('/dashboard', methods=['GET'])
 @login_required
 def dashboard():
+    if not get_one_query(UserTrait, current_user.id):
+        flash('Please Pick your traits', 'normal')
     return render_template('user/dashboard.html', user=current_user)
 
 
@@ -313,4 +315,4 @@ def traits():
         else:
             new_roomie_trait.create()
 
-    return render_template('user/traits.html', traits=db_traits)
+    return render_template('user/traits.html', traits=db_traits, user=current_user)

@@ -3,10 +3,14 @@
 
 
 <form action="{{ url_for('user_bp.traits') }}" class="traits-form" method='POST'>
+  {% if error %}
+  <p class=error><strong>Error:</strong> {{ error }}
+{% endif %}
   {% for trait in traits %}
+
   <fieldset class='traits-container'>
     <!-- Form Name -->
-    <label for="user-{{trait}}">Do you {{trait}}?</label>
+    <label for="user-{{trait}}">Do you {{ trait }}?</label>
     <input type="radio" name="user-{{trait}}" id="u-{{trait}}-yes" value="yes" required>
     <label for="u-{{trait}}-yes">Yes</label>
     <input type="radio" name="user-{{trait}}" id="u-{{trait}}-no" value="no" required>
