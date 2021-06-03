@@ -1,0 +1,42 @@
+{% extends "user/dashboard.html" %}
+{% block content %}
+
+<h3>Profile Page</h3>
+
+<form action="{{ url_for('user_bp.profile') }}"  method="POST">
+ <h2 class="title">Update Profile</h2>
+ <div class="input-field">
+     {{ form.name(placeholder="Name")}}
+ </div>
+ <div class="input-field">
+    {{ form.address(placeholder="Address")}}
+</div>
+<div class="input-field">
+    {{ form.school(placeholder="School")}}
+</div>
+<div class="input-field">
+    {{ form.email(placeholder="Email")}}
+</div>
+<div class="input-field">
+    {{ form.number(placeholder="Number")}}
+</div>
+    {{ form.submit(class_="btn solid")}}
+</form>
+
+{% endblock %}
+
+<script>
+    // updateProfile.onsubmit = async(e) => {
+    //     e.preventDefault()
+    //     console.log('Form has been submitted')
+    //     let res = fetch('/', {
+    //         method: 'POST',
+    //         body: new FormData(updateProfile)
+    //     }).then(res => {
+    //         console.log("Form has been submitted")
+    //         // Refresh
+    //         // window.location.replace('/')
+    //     })
+        
+    // }
+</script>

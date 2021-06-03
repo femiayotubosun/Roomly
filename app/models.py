@@ -4,7 +4,7 @@ from flask_login import UserMixin
 
 class Hostel(db.Model):
 
-    tablename = 'hostel'
+    __tablename__ = 'hostel'
 
     id = db.Column(
         db.Integer,
@@ -16,7 +16,7 @@ class Hostel(db.Model):
         unique=True
     )
 
-    type = db.Column(
+    hosteltype = db.Column(
         db.String(40)
     )
 
@@ -33,13 +33,13 @@ class Hostel(db.Model):
         db.session.commit()
         return self
 
-    def repr(self):
-        return f'<Hostel {self.name}'
+    def __repr__(self):
+        return f'<Hostel {self.name}>'
 
 
 class Room(db.Model):
 
-    tablename = 'room'
+    __tablename__ = 'room'
 
     id = db.Column(
         db.Integer,
@@ -84,13 +84,13 @@ class Room(db.Model):
         db.session.commit()
         return self
 
-    def repr(self):
+    def __repr__(self):
         return f'<Room {self.name}>'
 
 
 class User(db.Model, UserMixin):
 
-    tablename = 'user'
+    __tablename__ = 'user'
 
     id = db.Column(
         db.Integer,
@@ -112,7 +112,7 @@ class User(db.Model, UserMixin):
 
     )
     number = db.Column(
-        db.Integer
+        db.String(255)
 
     )
 
@@ -145,5 +145,133 @@ class User(db.Model, UserMixin):
         db.session.commit()
         return self
 
-    def repr(self):
-        return f'<Room {self.name}>'
+    def __repr__(self):
+        return f'<User {self.username}>'
+
+
+class UserTrait(db.Model):
+
+    __tablename__ = 'usertrait'
+
+    id = db.Column(
+        db.Integer,
+        primary_key=True
+    )
+
+    user_id = db.Column(
+        db.Integer,
+        nullable=False
+    )
+
+    neat = db.Column(
+        db.Boolean
+    )
+
+    quiet = db.Column(
+        db.Boolean
+    )
+    visitors = db.Column(
+        db.Boolean
+    )
+    smoker = db.Column(
+        db.Boolean
+    )
+    drinker = db.Column(
+        db.Boolean
+    )
+
+    earlybird = db.Column(
+        db.Boolean
+    )
+
+    nightcrawler = db.Column(
+        db.Boolean
+    )
+
+    snores = db.Column(
+        db.Boolean
+    )
+
+    sharethings = db.Column(
+        db.Boolean
+    )
+
+    studyinroom = db.Column(
+        db.Boolean
+    )
+
+    music = db.Column(
+        db.Boolean
+    )
+
+    def create(self):
+        db.session.add(self)
+        db.session.commit()
+        return self
+
+    def __repr__(self):
+        return f'<UserTrait {self.user_id}>'
+
+
+class RoomieTrait(db.Model):
+
+    __tablename__ = 'roomietrait'
+
+    id = db.Column(
+        db.Integer,
+        primary_key=True
+    )
+
+    user_id = db.Column(
+        db.Integer,
+        nullable=False
+    )
+
+    neat = db.Column(
+        db.Boolean
+    )
+
+    quiet = db.Column(
+        db.Boolean
+    )
+    visitors = db.Column(
+        db.Boolean
+    )
+    smoker = db.Column(
+        db.Boolean
+    )
+    drinker = db.Column(
+        db.Boolean
+    )
+
+    earlybird = db.Column(
+        db.Boolean
+    )
+
+    nightcrawler = db.Column(
+        db.Boolean
+    )
+
+    snores = db.Column(
+        db.Boolean
+    )
+
+    sharethings = db.Column(
+        db.Boolean
+    )
+
+    studyinroom = db.Column(
+        db.Boolean
+    )
+
+    music = db.Column(
+        db.Boolean
+    )
+
+    def create(self):
+        db.session.add(self)
+        db.session.commit()
+        return self
+
+    def __repr__(self):
+        return f'<RoomieTrait {self.user_id}>'

@@ -13,26 +13,26 @@
         <div class="dashboard-container">
             <div class="dash-nav">
                 <div class="header">
-                    <h3>Your Dashboard</h3>
+                    <h3>{{user.username}}, Your Dashboard</h3>
                 </div>
             </div>
             <div class="dash-main">
-                <div class="dash-top">
-                    <div class="burger">
+                <!-- <div class="dash-top">
+                    <div class="burger" id="burger">
                         <div class="line"></div>
                         <div class="line"></div>
                         <div class="line"></div>
                     </div>
-                </div>
-                <div class="dash-sidebar">
+                </div> -->
+                <div class="dash-sidebar" id="dash-sidebar">
                     <div class="room">
-                        <a class="sidebar-button">
+                        <a  href="/hostels" class="sidebar-button">
                             <i class="fas fa-cog"></i>    
                             Rooms
                         </a>
                     </div>
                     <div class="tools">
-                        <a class="sidebar-button home">
+                        <a href="/user/dashboard" class="sidebar-button home">
                             <i class="fas fa-home"></i>    
                             Home
                         </a>
@@ -40,11 +40,11 @@
                             <i class="far fa-bell"></i>
                             Notifications
                         </a>
-                        <a class="sidebar-button profile">
+                        <a href="/user/profile" class="sidebar-button profile">
                             <i class="far fa-user"></i>
                             
                             Profile</a>
-                        <a class="sidebar-button settings">
+                        <a  href="/user/traits" class="sidebar-button settings">
                             <i class="fas fa-cog"></i>    
                             Settings
                         </a>
@@ -56,11 +56,20 @@
                             Logout
                         </a>
                 </div>
+  
+                </div>
                 <div class="dash-content">
-
+                    {% block content %}{% endblock %}
                 </div>
             </div>
-        </div>
     </div>
+    <script>
+        // burger = document.querySelector('#burger')
+        // sidebar = document.querySelector('#dash-sidebar')
+
+        // burger.addEventListener("click", ()=>{
+        //     sidebar.classList.add('mobile-style')
+        // })
+    </script>
 </body>
 </html>

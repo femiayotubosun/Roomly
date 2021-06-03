@@ -1,0 +1,27 @@
+{% extends "user/dashboard.html" %}
+{% block content %}
+
+
+<form action="{{ url_for('user_bp.traits') }}" class="traits-form" method='POST'>
+  {% for trait in traits %}
+  <fieldset class='traits-container'>
+    <!-- Form Name -->
+    <label for="user-{{trait}}">Do you {{trait}}?</label>
+    <input type="radio" name="user-{{trait}}" id="u-{{trait}}-yes" value="yes" required>
+    <label for="u-{{trait}}-yes">Yes</label>
+    <input type="radio" name="user-{{trait}}" id="u-{{trait}}-no" value="no" required>
+    <label for="u-{{trait}}-no">No</label>
+    <label for="rommie-{{trait}}">How would you want your roomate to answer?</label>
+    <input type="radio" name="roomie-{{trait}}" id="r-{{trait}}-yes" value="yes" required> 
+    <label for="r-{{trait}}-yes">Yes</label>
+    <input type="radio" name="roomie-{{trait}}" id="r-{{trait}}-no" value="no" required>
+    <label for="r-{{trait}}-no">No</label>
+
+  </fieldset>
+
+  {% endfor %}
+
+    <input type="submit" value="Submit">
+</form>
+
+{% endblock%}

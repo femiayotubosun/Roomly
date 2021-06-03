@@ -1,0 +1,21 @@
+{% extends "user/dashboard.html" %}
+{% block content%}
+
+<h3>{{hostel.name}}</h3>
+<h4>Empty Rooms</h4>
+<ul>
+    {% for room in empty_rooms %}
+    <li><a href="/rooms/{{room.id}}">{{room.name}}</li></a>
+
+    {% endfor %}
+</ul>
+
+<h4>Rooms BY Match</h4>
+<ul>
+    {%for data in other_rooms %}
+    <li><a href="/rooms/{{ data.room.id }}">{{ data.room.name }} -- {{ data.match }}% Compatible </li></a>
+    {% endfor %}
+
+</ul>
+
+{% endblock %} 

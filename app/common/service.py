@@ -1,16 +1,22 @@
 from app.exts import db
+from app.models import UserTrait, RoomieTrait
 
 
-def get_all(Model):
+def get_all_query(Model):
     return Model.query.all()
 
 
-def get_one(Model, identifier):
-    return Model.query.get_or_404(identifier)
+def get_one_query(Model, identifier):
+    if Model == UserTrait:
+        return UserTrait.query.filter_by(user_id=identifier).first()
+    elif Model == RoomieTrait:
+        return RoomieTrait.query.filter_by(user_id=identifier).first()
+    else:
+        return Model.query.get(identifier)
 
 
-def delete_one(Model, identifier):
-    data = get_one(Model, identifier)
+def delete_one_query(Model, identifier):
+    data = get_one_query(Model, identifier)
 
     if not data:
         return None
