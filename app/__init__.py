@@ -32,7 +32,7 @@ def register_extensions(app):
     def load_user(user_id):
         return User.query.get(int(user_id))
 
-    # Admin
+    # Set up flask-admin
     admin.init_app(app)
     admin.add_view(ModelView(Hostel, db.session))
     admin.add_view(ModelView(Room, db.session))

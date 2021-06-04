@@ -370,14 +370,6 @@ form.sign-up-form {
   }
 }
 
-input[type="checkbox"] {
-  outline: 1px solid black;
-  background-color: blue;
-  color: black;
-  height: 1em;
-  width: 1em;
-}
-
 .error {
   color: red;
   font-size: 12px;

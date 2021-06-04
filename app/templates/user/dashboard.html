@@ -3,82 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/user/style.css') }}">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <title>Dashboard</title>
 </head>
 <body>
-    <div class="container">
-        <div class="dashboard-container">
-            <div class="dash-nav">
-                <div class="header">
-                    <h3>{{user.username}}, Your Dashboard</h3>
-                </div>
+    <div class="sidebar">
+        <div class="logo_content">
+            <div class="logo">
+                <i class='bx bxs-building-house'></i>
+                <div class="logo_name">Room.ly</div>
             </div>
-            <div class="dash-main">
-                <!-- <div class="dash-top">
-                    <div class="burger" id="burger">
-                        <div class="line"></div>
-                        <div class="line"></div>
-                        <div class="line"></div>
+            <i class='bx bx-menu' id="toggle-sidebar-btn"></i>
+        </div>
+        <ul class="nav_list">
+            <li>  
+                <i class='bx bx-search' ></i>
+                 <input type="text" name="" id="" placeholder="Search...">
+                <span class="tooltip">Search</span>
+            </li>
+            <li>
+                <a href="/user/dashboard">
+                    <i class='bx bx-grid-alt' ></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+                <span class="tooltip">Dashboard</span>
+            </li>
+            <li>
+                <a href="/user/traits">
+                    <i class='bx bx-line-chart' ></i>
+                    <span class="links_name">Traits</span>
+                </a>
+                <span class="tooltip">Traits</span>
+            </li>
+            <li>
+                <a href="/hostels">
+                    <i class='bx bx-building-house' ></i>
+                    <span class="links_name">Reserve Room</span>
+                </a>
+                <span class="tooltip">Reserve Room</span>
+            </li>
+            <li>
+                <a href="/user/profile">
+                    <i class='bx bx-user' ></i>
+                    <span class="links_name">Profile</span>
+                </a>
+                <span class="tooltip">Profile</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-cog' ></i>
+                    <span class="links_name">Settings</span>
+                </a>
+                <span class="tooltip">Settings</span>
+            </li>
+        </ul>
+        <div class="profile_content">
+            <div class="profile">
+                <div class="profile_details">
+                    <img src="{{  url_for('static', filename='img/user_photos/profile.jpg') }}"" alt="profile">
+                    <div class="name_job">
+                        <div class="name">{{ user.username.upper() }}</div>
+                        <div class="job">MARVIN HALL: Room A12</div>
                     </div>
-                </div> -->
-                <div class="dash-sidebar" id="dash-sidebar">
-                    <div class="room">
-                        <a  href="/hostels" class="sidebar-button">
-                            <i class="fas fa-cog"></i>    
-                            Rooms
-                        </a>
-                    </div>
-                    <div class="tools">
-                        <a href="/user/dashboard" class="sidebar-button home">
-                            <i class="fas fa-home"></i>    
-                            Home
-                        </a>
-                        <a class="sidebar-button notification">
-                            <i class="far fa-bell"></i>
-                            Notifications
-                        </a>
-                        <a href="/user/profile" class="sidebar-button profile">
-                            <i class="far fa-user"></i>
-                            
-                            Profile</a>
-                        <a  href="/user/traits" class="sidebar-button settings">
-                            <i class="fas fa-cog"></i>    
-                            Settings
-                        </a>
+                </div>
+                <a href="/logout" id="log_out">
+                    <i class="bx bx-log-out" ></i>
+                </a>
 
-                    </div>
-                    <div class="logout">
-                        <a href="/logout" class="sidebar-button logout">
-                            <i class="fas fa-sign-out-alt"></i>
-                            Logout
-                        </a>
-                </div>
-  
-                </div>
-                <div class="dash-content">
-                    {% with messages = get_flashed_messages(with_categories=true) %}
-                        {% if messages %}
-                            {% for category, message in messages %}
-                                <div class="{{ category }}">
-                                    {{ message }}
-                                </div>
-                            {% endfor %}
-                        {% endif %}
-                    {% endwith %}
-                    {% block content %}{% endblock %}
-                </div>
             </div>
+        </div>
     </div>
-    <script>
-        // burger = document.querySelector('#burger')
-        // sidebar = document.querySelector('#dash-sidebar')
-
-        // burger.addEventListener("click", ()=>{
-        //     sidebar.classList.add('mobile-style')
-        // })
-    </script>
+    <script src="{{  url_for('static', filename='js/user/script.js') }}"></script>
+    <div class="main-content">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </div>
+    
 </body>
 </html>
