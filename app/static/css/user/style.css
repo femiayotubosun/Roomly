@@ -19,14 +19,14 @@ body {
   top: 0;
   left: 0;
   height: 100%;
-  width: 78px;
-  background: #11101d;
+  width: 240px;
+  background: #355070;
   padding: 6px 14px;
-  transition: all 0.5s ease;
+  transition: all 0.6s ease-in-out;
 }
 
 .sidebar.active {
-  width: 240px;
+  width: 78px;
 }
 
 .sidebar .logo_content .logo {
@@ -34,14 +34,14 @@ body {
   display: flex;
   height: 50px;
   width: 100%;
-  opacity: 0;
+  opacity: 1;
   align-items: center;
   pointer-events: none;
   transition: all 0.5s ease;
 }
 
 .sidebar.active .logo_content .logo {
-  opacity: 1;
+  opacity: 0;
   pointer-events: none;
 }
 
@@ -58,7 +58,7 @@ body {
 .sidebar #toggle-sidebar-btn {
   position: absolute;
   color: #fff;
-  left: 50%;
+  left: 90%;
   top: 6px;
   font-size: 20px;
   height: 50px;
@@ -70,7 +70,7 @@ body {
 }
 
 .sidebar.active #toggle-sidebar-btn {
-  left: 90%;
+  left: 50%;
 }
 
 .sidebar ul {
@@ -102,11 +102,12 @@ body {
   transition: 0s;
   opacity: 0;
   pointer-events: none;
-  display: block;
+  display: none;
+  z-index: 299;
 }
 
 .sidebar.active ul li .tooltip {
-  display: none;
+  display: block;
 }
 .sidebar ul li:hover .tooltip {
   transition: all 0.4s ease;
@@ -123,7 +124,7 @@ body {
   border-radius: 12px;
   outline: none;
   border: none;
-  background: #1d1b31;
+  background: #788a9f;
   padding-left: 50px;
   font-size: 16px;
   color: #fff;
@@ -138,13 +139,13 @@ body {
 }
 
 .sidebar ul li .bx-search:hover {
-  background: #fff;
-  color: #1d1b31;
+  background: transparent;
+  color: #fff;
 }
 
 .sidebar.active ul li .bx-search:hover {
-  background: transparent;
-  color: #fff;
+  background: #fff;
+  color: #1d1b31;
 }
 
 .sidebar ul li a {
@@ -159,7 +160,7 @@ body {
 
 .sidebar ul li a:hover {
   background: #fff;
-  color: #11101d;
+  color: #355070;
 }
 .sidebar ul li i {
   height: 50px;
@@ -170,13 +171,13 @@ body {
 }
 
 .sidebar .links_name {
-  opacity: 0;
-  pointer-events: none;
+  opacity: 1;
+  pointer-events: auto;
   transition: all 0.5s ease;
 }
 .sidebar.active .links_name {
-  opacity: 1;
-  pointer-events: auto;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .sidebar .profile_content {
@@ -192,29 +193,28 @@ body {
   position: relative;
   padding: 10px 6px;
   height: 60px;
-  background: #1d1b31;
-  transition: all 0.5s ease;
+  background: #788a9f;
+  transition: all 0.7s ease;
 }
 
 .profile_content .profile .profile_details {
   display: flex;
   align-items: center;
-  opacity: 0;
-  pointer-events: none;
+  opacity: 1;
+  pointer-events: auto;
   white-space: nowrap;
 }
 
 .sidebar.active .profile .profile_details {
-  opacity: 1;
-  pointer-events: auto;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .profile .profile_details img {
   height: 45px;
   width: 45px;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 12px;
-  transition: all 0.5s ease;
 }
 
 .profile .profile_details .name_job {
@@ -231,7 +231,7 @@ body {
 
 .profile #log_out {
   position: absolute;
-  left: 50%;
+  left: 88%;
   bottom: 5px;
   transform: translateX(-50%);
   min-width: 50px;
@@ -245,13 +245,13 @@ body {
 }
 
 .sidebar.active .profile #log_out {
-  left: 88%;
+  left: 50%;
 }
 .main-content {
   position: absolute;
   height: 100%;
-  width: calc(100% -78px);
-  left: 78px;
+  width: calc(100% -240px);
+  left: 240px;
   padding: 20px;
   transition: all 0.5s ease;
 }
@@ -263,6 +263,6 @@ body {
 }
 
 .sidebar.active ~ .main-content {
-  width: calc(100% - 240px);
-  left: 240px;
+  width: calc(100% - 78px);
+  left: 78px;
 }
