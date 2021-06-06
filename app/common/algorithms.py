@@ -1,16 +1,19 @@
+
+def trait_obj_to_list(traits):
+    try:
+        traits = vars(traits)
+        traits.pop('_sa_instance_state', None)
+        traits.pop('id', None)
+        traits.pop('user_id', None)
+    except:
+        return None
+
+    return traits
+
+
 def match_traits(u_traits, r_traits):
-
-    u_traits = vars(u_traits)
-    r_traits = vars(r_traits)
-
-    u_traits.pop('_sa_instance_state', None)
-    u_traits.pop('id', None)
-    u_traits.pop('user_id', None)
-
-    r_traits.pop('_sa_instance_state', None)
-    r_traits.pop('id', None)
-    roomie = r_traits.pop('user_id', None)
-
+    u_traits = trait_obj_to_list(u_traits)
+    r_traits = trait_obj_to_list(r_traits)
     shared_traits = {
         k: u_traits[k] for k in u_traits if k in r_traits and u_traits[k] == r_traits[k]}
 

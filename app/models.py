@@ -13,7 +13,6 @@ class Hostel(db.Model):
 
     name = db.Column(
         db.String(40),
-        unique=True
     )
 
     hosteltype = db.Column(

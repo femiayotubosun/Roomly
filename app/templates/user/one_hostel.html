@@ -1,21 +1,138 @@
 {% extends "user/dashboard.html" %}
 {% block content%}
+<div class="hostel-container">
+    <h3 class=hostel-name >{{hostel.name.upper()}}</h3>
 
-<h3>{{hostel.name}}</h3>
-<h4>Empty Rooms</h4>
-<ul>
-    {% for room in empty_rooms %}
-    <li><a href="/rooms/{{room.id}}">{{room.name}}</li></a>
+    <div class="rooms-container">
+    <h4>Rooms</h4>
+    <table id="match-rooms">
+        <tr>
+            <th></th>
+            <th onclick="sortTable(1)">Room <i class='bx bx-sort' ></i></th>
+            <th>Occupants / Bedspace</th>
+            <th onclick="sortTable(3)">Bathroom <i class='bx bx-sort' ></th>
+            <th onclick="sortTable(4)">Compatibility <i class='bx bx-sort' ></i></th>
+        </tr>
 
-    {% endfor %}
-</ul>
+        {% for room in empty_rooms %}
+        <tr onclick="window.location='/rooms/{{ room.id }}'">
+            <td class="empty"></td>
+            <td>{{room.name}}</td>
+            <td> 0 / {{ room.bedspace }}</td>
+            <td>
+                {% if room.bathroom %}
+                    <i class='bx bxs-bath'></i>
+                    <!-- <i class='bx bx-check'></i> -->
+                {% else %}
+                    <i class='bx bxs-bath empty_text'></i>
+  
+                {% endif %}
+            </td>
+            <td></td>
+        </tr>
+        {% endfor %}
+        {% for room in other_rooms %}
+        
 
-<h4>Rooms BY Match</h4>
-<ul>
-    {%for data in other_rooms %}
-    <li><a href="/rooms/{{ data.room.id }}">{{ data.room.name }} -- {{ data.match }}% Compatible </li></a>
-    {% endfor %}
+        <tr onclick="window.location='/rooms/{{ room.id }}';">
 
-</ul>
+            {% if room.match >=70 %}
+                <td class="success"></td>
+            {% elif room.match >=40 %}
+                <td class="fair"></td>
+            {% else %}
+                <td class="error"></td>
+            {% endif %}
+            <td>{{ room.name }} </td>
+            <td>{{ room.users|length }} / {{ room.bedspace }}</td>
+            <td>
+                {% if room.bathroom %}
+                    <i class='bx bxs-bath'></i>
+                    <!-- <i class='bx bx-check'></i> -->
+                {% else %}
+                    <i class='bx bxs-bath empty_text'></i>
+  
+                {% endif %}
+            </td>
+            <td>{{ room.match }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+</div>
+<script>
 
+    // Sort Table function
+    function sortTable(n) {
+      var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+      table = document.getElementById("match-rooms");
+      switching = true;
+      // Set the sorting direction to ascending:
+      dir = "desc";
+      /* Make a loop that will continue until
+      no switching has been done: */
+      while (switching) {
+        // Start by saying: no switching is done:
+        switching = false;
+        rows = table.rows;
+        /* Loop through all table rows (except the
+        first, which contains table headers): */
+
+
+        for (i = 1; i < (rows.length - 1); i++) {
+          // Start by saying there should be no switching:
+          shouldSwitch = false;
+          /* Get the two elements you want to compare,
+          one from current row and one from the next: */
+          x = rows[i].getElementsByTagName("TD")[n];
+          y = rows[i + 1].getElementsByTagName("TD")[n];
+          /* Check if the two rows should switch place,
+          based on the direction, asc or desc: */
+          if (dir == "asc") {
+              if(n === 4){
+                if (Number(x.innerHTML) > Number(y.innerHTML)) {
+                    shouldSwitch = true;
+                    break;
+                  }
+              } else {
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        // If so, mark as a switch and break the loop:
+                        shouldSwitch = true;
+                        break;
+            }
+              } 
+          } else if (dir == "desc") {
+              if( n === 4 ){
+                if (Number(x.innerHTML) < Number(y.innerHTML)) {
+                    shouldSwitch = true;
+                    break;
+                  }
+              } else {
+            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+              // If so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }}
+          }
+        }
+        if (shouldSwitch) {
+          /* If a switch has been marked, make the switch
+          and mark that a switch has been done: */
+          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+          switching = true;
+          // Each time a switch is done, increase this count by 1:
+          switchcount ++;
+        } else {
+          /* If no switching has been done AND the direction is "asc",
+          set the direction to "desc" and run the while loop again. */
+          if (switchcount == 0 && dir == "desc") {
+            dir = "asc";
+            switching = true;
+          }
+        }
+      }
+    }
+
+    sortTable(4)
+    </script>
 {% endblock %} 

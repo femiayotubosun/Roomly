@@ -58,7 +58,7 @@ def signin():
         if user.username == 'admin':
             return redirect('/admin')
 
-        return redirect(url_for('user_bp.dashboard'))
+        return redirect(url_for('user_bp.traits'))
 
 
 @login_required

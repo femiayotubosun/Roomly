@@ -1,31 +1,178 @@
 {% extends "user/dashboard.html" %}
 {% block content %}
 
+<h5>Looking for roomates? Select traits.</h5>
+<form action="{{ url_for('user_bp.traits') }}" id="traits-form" method='POST'>
+    {% if error %}
+    <p class=error><strong>Error:</strong> {{ error }}
+    {% endif %}
+    <div id="traits-container">
+    {% for trait in traits %}
 
-<form action="{{ url_for('user_bp.traits') }}" class="traits-form" method='POST'>
-  {% if error %}
-  <p class=error><strong>Error:</strong> {{ error }}
-{% endif %}
+    <fieldset class='trait-container'>
+      <!-- Form Name -->
+      <div class="trait-head">
+            {{ traits_questions[trait] }}
+      </div>
+
+
+      <div class="trait-content">
+        <div class="trait">
+          <label for="roomie-{{trait}}">You</label>
+          <input type="checkbox" id="user-{{trait}}" name="user-{{trait}}" value="True">
+          <input type='hidden'  class ="hiddeninput" id="hidden-user-{{trait}}" value='False' name="user-{{trait}}">
+        </div>
+        <div class="trait">
+          <label for="roomie-{{trait}}">Roommate </label>
+          <input type="checkbox" id="roomie-{{trait}}" name="roomie-{{trait}}" value="True">
+          <input type="hidden" id="hidden-roomie-{{trait}}" value="False" name="roomie-{{trait}}">
+        </div>
+
+
+      </div>
+
+    </fieldset>
+
+    {% endfor %}
+    </div >
+    <div class="traits-btn">
+      <input type="submit"  class="btn" value="Submit">
+    </div>
+
+</form>
+
+
+<script>
+
+  // Check already schecked traits
   {% for trait in traits %}
 
-  <fieldset class='traits-container'>
-    <!-- Form Name -->
-    <label for="user-{{trait}}">Do you {{ trait }}?</label>
-    <input type="radio" name="user-{{trait}}" id="u-{{trait}}-yes" value="yes" required>
-    <label for="u-{{trait}}-yes">Yes</label>
-    <input type="radio" name="user-{{trait}}" id="u-{{trait}}-no" value="no" required>
-    <label for="u-{{trait}}-no">No</label>
-    <label for="rommie-{{trait}}">How would you want your roomate to answer?</label>
-    <input type="radio" name="roomie-{{trait}}" id="r-{{trait}}-yes" value="yes" required> 
-    <label for="r-{{trait}}-yes">Yes</label>
-    <input type="radio" name="roomie-{{trait}}" id="r-{{trait}}-no" value="no" required>
-    <label for="r-{{trait}}-no">No</label>
+    var userchckbx = "user-{{trait}}";
+    var roomchckbx = "roomie-{{trait}}";
 
-  </fieldset>
+    if("{{ user_trait[trait] }}" === "True"){
+      document.getElementById(userchckbx).checked = true;
+    }
+    if("{{ roomie_trait[trait] }}" === "True"){
+      document.getElementById(roomchckbx).checked = true;
+    }
 
   {% endfor %}
 
-    <input type="submit" value="Submit">
-</form>
+  // Send Form Data
 
+  window.addEventListener( "load", function () {
+    function sendData() {
+      const XHR = new XMLHttpRequest();
+  
+      // Bind the FormData object and the form element
+      const FD = new FormData( form );
+  
+      // Define what happens on successful data submission
+      XHR.addEventListener( "load", function(event) {
+        window.location.href = "http://localhost:5000/user/profile"
+      } );
+  
+      // Define what happens in case of error
+      XHR.addEventListener( "error", function( event ) {
+        alert( 'Oops! Something went wrong.' );
+      } );
+  
+      // Set up our request
+      XHR.open( "POST", "http://localhost:5000/user/traits" );
+  
+      // The data sent is what the user provided in the form
+      XHR.send( FD );
+    }
+  
+    // Access the form element...
+    const form = document.getElementById( "traits-form" );
+  
+    // ...and take over its submit event.
+    form.addEventListener( "submit", function ( event ) {
+
+      event.preventDefault();
+
+       // we hav to edit the data here
+      if(document.getElementById('user-neat').checked) {
+        document.getElementById('hidden-user-neat').disabled = true;
+      }
+      if(document.getElementById('roomie-neat').checked) {
+        document.getElementById('hidden-roomie-neat').disabled = true;
+      }
+      
+      if(document.getElementById('user-quiet').checked) {
+        document.getElementById('hidden-user-quiet').disabled = true;
+      }
+      if(document.getElementById('roomie-quiet').checked) {
+        document.getElementById('hidden-roomie-quiet').disabled = true;
+      }
+      
+      if(document.getElementById('user-visitors').checked) {
+        document.getElementById('hidden-user-visitors').disabled = true;
+      }
+      if(document.getElementById('roomie-visitors').checked) {
+        document.getElementById('hidden-roomie-visitors').disabled = true;
+      }
+      
+      if(document.getElementById('user-smoker').checked) {
+        document.getElementById('hidden-user-smoker').disabled = true;
+      }
+      if(document.getElementById('roomie-smoker').checked) {
+        document.getElementById('hidden-roomie-smoker').disabled = true;
+      }
+      
+      if(document.getElementById('user-drinker').checked) {
+        document.getElementById('hidden-user-drinker').disabled = true;
+      }
+      if(document.getElementById('roomie-drinker').checked) {
+        document.getElementById('hidden-roomie-drinker').disabled = true;
+      }
+      
+      if(document.getElementById('user-earlybird').checked) {
+        document.getElementById('hidden-user-earlybird').disabled = true;
+      }
+      if(document.getElementById('roomie-earlybird').checked) {
+        document.getElementById('hidden-roomie-earlybird').disabled = true;
+      }
+      
+      if(document.getElementById('user-nightcrawler').checked) {
+        document.getElementById('hidden-user-nightcrawler').disabled = true;
+      }
+      if(document.getElementById('roomie-nightcrawler').checked) {
+        document.getElementById('hidden-roomie-nightcrawler').disabled = true;
+      }
+      
+      if(document.getElementById('user-snores').checked) {
+        document.getElementById('hidden-user-snores').disabled = true;
+      }
+      if(document.getElementById('roomie-snores').checked) {
+        document.getElementById('hidden-roomie-snores').disabled = true;
+      }
+      
+      if(document.getElementById('user-sharethings').checked) {
+        document.getElementById('hidden-user-sharethings').disabled = true;
+      }
+      if(document.getElementById('roomie-sharethings').checked) {
+        document.getElementById('hidden-roomie-sharethings').disabled = true;
+      }
+      
+      if(document.getElementById('user-studyinroom').checked) {
+        document.getElementById('hidden-user-studyinroom').disabled = true;
+      }
+      if(document.getElementById('roomie-studyinroom').checked) {
+        document.getElementById('hidden-roomie-studyinroom').disabled = true;
+      }
+      
+      if(document.getElementById('user-music').checked) {
+        document.getElementById('hidden-user-music').disabled = true;
+      }
+      if(document.getElementById('roomie-music').checked) {
+        document.getElementById('hidden-roomie-music').disabled = true;
+      }
+  
+      sendData();
+    } );
+  } );
+</script>
 {% endblock%}
