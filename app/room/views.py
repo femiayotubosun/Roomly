@@ -22,15 +22,23 @@ def room(roomId):
     occupants_match = []
     user_traits = get_one_query(UserTrait, current_user.id)
 
+    print(user_traits)
     if user_traits and len(room.users) >= 1:
         for user in room.users:
+            if(user.id == current_user.id):
+                r_traits = user_traits
+            else:
+                r_traits = get_one_query(UserTrait, user.id)
 
-            r_traits = get_one_query(UserTrait, user.id)
             occupants_match.append(match_traits(user_traits, r_traits))
 
     print(occupants_match)
     if request.method == 'POST':
+        if len(room.users) >= room.bedspace:
+            flash('This room is full', 'fair')
+            return redirect(url_for('room_bp.room', roomId=roomId))
         current_user.room = room
         db.session.commit()
+        flash('Assigned successfully', 'success')
 
     return render_template('room/one_room.html', user=current_user, room=room)
