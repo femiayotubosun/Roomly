@@ -19,13 +19,18 @@
       <div class="trait-content">
         <div class="trait">
           <label for="roomie-{{trait}}">You</label>
-          <input type="checkbox" id="user-{{trait}}" name="user-{{trait}}" value="True">
-          <input type='hidden'  class ="hiddeninput" id="hidden-user-{{trait}}" value='False' name="user-{{trait}}">
+          Yes:
+          <input type="radio" id="user-{{trait}}-y" name="user-{{trait}}" value="True" required>
+          No:
+          <input type="radio" id="user-{{trait}}-n" name="user-{{trait}}" value="False" required>
         </div>
         <div class="trait">
           <label for="roomie-{{trait}}">Roommate </label>
-          <input type="checkbox" id="roomie-{{trait}}" name="roomie-{{trait}}" value="True">
-          <input type="hidden" id="hidden-roomie-{{trait}}" value="False" name="roomie-{{trait}}">
+          Yes:
+          <input type="radio" id="roomie-{{trait}}-y" name="roomie-{{trait}}" value="True" required>
+          No:
+          <input type="radio" id="roomie-{{trait}}-n" name="roomie-{{trait}}" value="False" required>
+          <!-- <input type="hidden" id="hidden-roomie-{{trait}}" value="False" name="roomie-{{trait}}"> -->
         </div>
 
 
@@ -61,12 +66,13 @@
 
   // Send Form Data
 
+  /*
   window.addEventListener( "load", function () {
     function sendData() {
       const XHR = new XMLHttpRequest();
   
       // Bind the FormData object and the form element
-      const FD = new FormData( form );
+      const FD = new FormData( myform );
   
       // Define what happens on successful data submission
       XHR.addEventListener( "load", function(event) {
@@ -75,6 +81,7 @@
   
       // Define what happens in case of error
       XHR.addEventListener( "error", function( event ) {
+        console.log("Error with AJAX request")
         alert( 'Oops! Something went wrong.' );
       } );
   
@@ -86,13 +93,13 @@
     }
   
     // Access the form element...
-    const form = document.getElementById( "traits-form" );
+    const myform = document.getElementById( "traits-form" );
   
     // ...and take over its submit event.
-    form.addEventListener( "submit", function ( event ) {
+    myform.addEventListener( "submit", function ( event ) {
 
       event.preventDefault();
-
+      console.log("Submitting")
        // we hav to edit the data here
       if(document.getElementById('user-neat').checked) {
         document.getElementById('hidden-user-neat').disabled = true;
@@ -173,6 +180,6 @@
   
       sendData();
     } );
-  } );
+  } ); */
 </script>
 {% endblock%}

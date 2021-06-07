@@ -2,9 +2,7 @@
 def trait_obj_to_list(traits):
     try:
         traits = vars(traits)
-        print(traits)
         traits.pop('_sa_instance_state', None)
-        print("Done")
         traits.pop('id', None)
         traits.pop('user_id', None)
     except:

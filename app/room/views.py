@@ -22,7 +22,6 @@ def room(roomId):
     occupants_match = []
     user_traits = get_one_query(UserTrait, current_user.id)
 
-    print(user_traits)
     if user_traits and len(room.users) >= 1:
         for user in room.users:
             if(user.id == current_user.id):

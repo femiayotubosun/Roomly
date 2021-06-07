@@ -33,7 +33,6 @@ def hostel(id):
     # Check for empty rooms and occupied rooms
     empty_rooms = []
     occupied_rooms = []
-    room_matches = []
 
     for room in hostel.rooms:
         if len(room.users) == 0:
@@ -50,8 +49,5 @@ def hostel(id):
             counter += 1
         match_percentage = accum / counter
         room.match = match_percentage
-        # room_matches.append({'room': room, 'match': match_percentage})
-    room_matches = sort_rooms_by_match(room_matches)
-    print(room_matches)
 
     return render_template('user/one_hostel.html', user=current_user, hostel=hostel, empty_rooms=empty_rooms, other_rooms=occupied_rooms)

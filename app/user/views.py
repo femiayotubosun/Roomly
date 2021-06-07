@@ -74,6 +74,7 @@ def traits():
 
     if request.method == 'POST':
 
+        print(request.form)
         if not ut_exists:
             user_trait = UserTrait(user_id=current_user.id)
 
@@ -219,6 +220,7 @@ def traits():
         if not rt_exists:
             roomie_trait = RoomieTrait(user_id=current_user.id)
 
+        print(request.form)
         roomie_neat = request.form['roomie-neat']
         roomie_quiet = request.form['roomie-quiet']
         roomie_visitors = request.form['roomie-visitors']
@@ -323,7 +325,7 @@ def traits():
             db.session.commit()
         else:
             roomie_trait.create()
-        return redirect(url_for('user.profile'))
+        return redirect(url_for('user_bp.profile'))
 
     return render_template('user/traits.html', traits=db_traits, traits_questions=traits_questions,
                            user=current_user, user_trait=trait_obj_to_list(user_trait), roomie_trait=trait_obj_to_list(roomie_trait))

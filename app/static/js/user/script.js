@@ -13,14 +13,15 @@ searchBtn.onclick = function () {
 // Alert box handler
 var modal = document.getElementById("popupModal");
 var closeModal = document.getElementsByClassName("close")[0];
-console.log(closeModal);
 
-closeModal.onclick = function () {
-  modal.style.display = "none";
-};
-
-window.onclick = function (event) {
-  if (event.target == modal) {
+if (closeModal) {
+  closeModal.onclick = function () {
     modal.style.display = "none";
-  }
-};
+  };
+
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+}
