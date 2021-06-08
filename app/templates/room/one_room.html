@@ -1,24 +1,83 @@
 {% extends "user/dashboard.html" %}
+
 {% block content%}
-<h3>
-    {{room.name}}
-</h3>
 
-{% if room.bathroom %}
-    <p>There is a bathroom</p>
-{% endif%}
+<div class="room-container">
 
-<p>{{room.bedspace}} Bedspaces  </p>
+    <div class="room_description">
+        <h3>
+            {{room.name}}
+        </h3>
+        
+        {% if room.bathroom %}
+            <p>There is a bathroom</p>
+        {% endif%}
+        
+        <p>{{room.bedspace}} Bedspaces  </p>
+        
+    </div>
 
 <h3>Occupants</h3>
-<ul>
-    {% for user in room.users%}
-    <li>{{ user}}</li>
-    {%endfor%}
-</ul>
+    <div class="room_occupants">
+        <table id="occupants_table">
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Match</th>
+            </tr>
+            {% for user in room.users %}
+            <tr>            
+                {% if user.match == 'You' %}
+                    <td class="success"></td>
+                {% elif user.match >=70 %}
+                    <td class="success"></td>
+                {% elif user.match >=40 %}
+                    <td class="fair"></td>
+                {% else %}
+                    <td class="error"></td>
+                {% endif %}
+                {% if user.name %}
+                    <td> {{ user.name }}</td>
+                {% else %}
+                    <td> {{ user.username }}</td>
+                {% endif %}
+                    <td>{{ user.match }} %</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <!-- {% for user in room.users%}
+        <div class="user_card">
+            <div class="user_card__img">
+                <img src="{{  url_for('static', filename='img/user_photos/profile.jpg') }}" alt="" srcset="">
+            </div>
+
+            <div class="user_card__desc">
+                {% if user.name %}
+                {{user.name.upper().split(' ')[0] }} <br>
+                {{user.name.upper().split(' ')[1] }}
+                {% else %}
+                {{ user.username.upper() }}
+                {% endif %}
+            </div>
+
+            {% if user.match == 'You' %}
+            <div class="user_card__match success"> You </div>
+            {% elif user.match >=70 %}
+                <div class="user_card__match success"> {{ user.match }}%</div>
+            {% elif user.match >=40 %}
+                <div class="user_card__match fair">{{user.match}}%</div>
+            {% else %}
+                <div class="user_card__match error">{{user.match}}% </div>
+            {% endif %}
+ 
+
+        </div>
+        {%endfor%} -->
+    </div>
+
 
 <form action="{{ url_for('room_bp.room', roomId=room.id)}}" method="POST"> 
     <input type="submit" value="Reserve Room">
 </form>
-
+</div>
 {%endblock%}

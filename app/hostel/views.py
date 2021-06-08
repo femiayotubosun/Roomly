@@ -41,13 +41,21 @@ def hostel(id):
         occupied_rooms.append(room)
     # Get Match for Rooms
     for room in occupied_rooms:
-        counter = 0
         accum = 0
+        room_mem = 0
         for user in room.users:
-            accum += (match_traits(get_one_query(
-                RoomieTrait, current_user.id), get_one_query(UserTrait, user.id)))
-            counter += 1
-        match_percentage = accum / counter
+            if(user.id == current_user.id):
+                continue
+            else:
+                room_mem += 1
+                accum += (match_traits(get_one_query(
+                    RoomieTrait, current_user.id), get_one_query(UserTrait, user.id)))
+
+        if room_mem == 0:
+            match_percentage = 100
+        else:
+            match_percentage = accum / room_mem
+
         room.match = match_percentage
 
     return render_template('user/one_hostel.html', user=current_user, hostel=hostel, empty_rooms=empty_rooms, other_rooms=occupied_rooms)
