@@ -37,12 +37,21 @@ def room(roomId):
     print(occupants_match)
     if request.method == 'POST':
         if len(room.users) >= room.bedspace:
-            flash('This room is full', 'fair')
+            flash('This room is full.', 'fair')
             return redirect(url_for('room_bp.room', roomId=roomId))
 
         current_user.room = room
         db.session.commit()
-        flash('Assigned successfully', 'success')
+        flash('Assigned successfully.', 'success')
         return redirect(url_for('room_bp.room', roomId=roomId))
 
     return render_template('room/one_room.html', user=current_user, room=room)
+
+
+@room_bp.route('/<roomId>/cancelReservation', methods=['GET', 'POST'])
+@login_required
+def cancel_room(roomId):
+    current_user.room = None
+    db.session.commit()
+    flash('Room reservation cancelled.', 'success')
+    return redirect(url_for('room_bp.room', roomId=roomId))

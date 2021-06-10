@@ -1,0 +1,25 @@
+{% extends "traits/trait_layout.html" %}
+{% block content %}
+<div class="quiz__content">
+    <p id="quiz-question" class="question"></p>
+    <div class="options">
+        <div id="user-options" class="txt">
+            <button id="user-yes" class="option user-o"><i id="user-yes-check" class='bx bx-checkbox'></i> Yes</button>
+            <!-- <button class="neutral option"><i class='bx bx-checkbox'></i> Neutral</button> -->
+            <button id="user-no" class="option user-o"><i id="user-no-check" class='bx bx-checkbox' ></i></i>No</div>
+        </div>
+        <p class="question2">How should your roomate respond?</p>
+        <div id="roomie-options">
+            <button id="roomie-yes" class="option"><i class='bx bx-checkbox'></i> Yes</button>
+            <button id="roomie-neutral" class="neutral option"><i class='bx bx-checkbox'></i>Neutral</button>
+            <button id= "roomie-no" class="option"><i class='bx bx-checkbox' ></i></i>No</button>
+        </div>
+        <div class="ctr">
+            <button id="back"><i class='bx bx-arrow-back' ></i></button>
+            <button id="next">Next Question <i class='bx bx-right-arrow-alt'></i></button>
+            <button id="submit" class="hidden">Submit</button>
+          </div>
+    </div>
+
+
+{% endblock %}

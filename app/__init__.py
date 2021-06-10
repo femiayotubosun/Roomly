@@ -7,6 +7,7 @@ from app.main.views import main
 from app.auth.routes import auth
 from app.room.views import room_bp
 from app.hostel.views import hostel_bp
+from app.traits.views import trait_bp
 from app.models import User, Hostel, Room, UserTrait, RoomieTrait
 
 
@@ -47,3 +48,4 @@ def register_blueprints(app):
     app.register_blueprint(auth, url_prefix='/auth')
     app.register_blueprint(room_bp, url_prefix='/rooms')
     app.register_blueprint(hostel_bp, url_prefix='/hostels')
+    app.register_blueprint(trait_bp, url_prefix='/traitQuiz')

@@ -1,5 +1,6 @@
 db_traits = ['neat', 'quiet', 'visitors', 'smoker', 'drinker', 'earlybird',
-             'nightcrawler', 'snores', 'sharethings', 'studyinroom', 'music']
+             'nightcrawler', 'snores', 'sharethings', 'studyinroom', 'music', 'lightsleeper',
+             'darkroom']
 
 traits_questions = {
     "neat": "Neat", "quiet": "Quiet", "visitors": "Visitors", "smoker": "Smokes",

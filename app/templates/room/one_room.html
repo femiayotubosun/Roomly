@@ -3,81 +3,75 @@
 {% block content%}
 
 <div class="room-container">
+    <div class="room_img">
 
-    <div class="room_description">
-        <h3>
-            {{room.name}}
-        </h3>
-        
-        {% if room.bathroom %}
-            <p>There is a bathroom</p>
-        {% endif%}
-        
-        <p>{{room.bedspace}} Bedspaces  </p>
-        
     </div>
+    <div class="room_details">
+        <div class="room_name">
+            <h3> {{ room.hostel.name }} - {{ room.name }}</h3>
+        </div>
+        <div class="room_description">
+            <p class="bedspace"><i class='bx bxs-bed'></i> {{room.bedspace}} Bedspaces  </p>
+            {% if room.bathroom %}
+                <p> <i class='bx bxs-bath'></i> Bathroom available</p>
+            {% endif%}
+            
 
-<h3>Occupants</h3>
-    <div class="room_occupants">
-        <table id="occupants_table">
-            <tr>
-                <th></th>
-                <th>Name</th>
-                <th>Match</th>
-            </tr>
-            {% for user in room.users %}
-            <tr>            
-                {% if user.match == 'You' %}
-                    <td class="success"></td>
-                {% elif user.match >=70 %}
-                    <td class="success"></td>
-                {% elif user.match >=40 %}
-                    <td class="fair"></td>
-                {% else %}
-                    <td class="error"></td>
-                {% endif %}
-                {% if user.name %}
-                    <td> {{ user.name }}</td>
-                {% else %}
-                    <td> {{ user.username }}</td>
-                {% endif %}
-                    <td>{{ user.match }} %</td>
-            </tr>
-            {% endfor %}
-        </table>
-        <!-- {% for user in room.users%}
-        <div class="user_card">
-            <div class="user_card__img">
-                <img src="{{  url_for('static', filename='img/user_photos/profile.jpg') }}" alt="" srcset="">
+            
+        </div>
+        <div class="occupants_header">
+            
+            <h3><i class='bx bxs-user'></i> Occupants </h3></div>
+        <div class="room_occupants">
+  
+            {%for user in room.users %}
+                <div class="card__container">
+                    <div class="profile__img">
+        
+                    </div>
+                    <div class="text__content">
+                        <h1>{{ user.name }}</h1>
+                        <h2>Traits</h2>
+                        <p class="text__description">Smokes, Drinks, Studies in Room,
+                            Neat, Quiet, Music, Has Visitors...
+                        </p>
+                        <div class="text__btn">
+                            <h3> More...</h3>
+                        </div>
+                    </div>
+                </div>
+            {%endfor%}
             </div>
-
-            <div class="user_card__desc">
-                {% if user.name %}
-                {{user.name.upper().split(' ')[0] }} <br>
-                {{user.name.upper().split(' ')[1] }}
-                {% else %}
-                {{ user.username.upper() }}
-                {% endif %}
-            </div>
-
-            {% if user.match == 'You' %}
-            <div class="user_card__match success"> You </div>
-            {% elif user.match >=70 %}
-                <div class="user_card__match success"> {{ user.match }}%</div>
-            {% elif user.match >=40 %}
-                <div class="user_card__match fair">{{user.match}}%</div>
+            {% if user.room.id == room.id %}
+                <div class="room_btns two_room_btns">
+                    <form action="{{ url_for('room_bp.room', roomId=room.id)}}" method="POST"> 
+                        <button type="submit" class="btn inactive" disabled>Reserve Room</button>
+                    </form>
+                    <div class="btn inverse-btn" onclick="window.location='/rooms/{{room.id}}/cancelReservation';">Cancel Reservation</div>
             {% else %}
-                <div class="user_card__match error">{{user.match}}% </div>
+                <div class="room_btns one_room_btn">
+                    {% if room.users|length >= room.bedspace %}
+                    <form action="{{ url_for('room_bp.room', roomId=room.id)}}" method="POST"> 
+                        <button type="submit" class="btn inactive" disabled>Reserve Room</button>
+                    </form>
+                    {% else %}
+                    <form action="{{ url_for('room_bp.room', roomId=room.id)}}" method="POST"> 
+                        <input type="submit" class="btn" value="Reserve Room">
+                    </form>
+                    {% endif %}
             {% endif %}
- 
+
 
         </div>
-        {%endfor%} -->
+ 
     </div>
 
 
-<form action="{{ url_for('room_bp.room', roomId=room.id)}}" method="POST"> 
-    <input type="submit" value="Reserve Room">
-</form>
-</div>
+
+
+
+    </div>
+
+
+
 {%endblock%}

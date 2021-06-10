@@ -203,6 +203,13 @@ class UserTrait(db.Model):
         db.Boolean
     )
 
+    lightsleeper = db.Column(
+        db.Boolean
+    )
+    darkroom = db.Column(
+        db.Boolean
+    )
+
     def create(self):
         db.session.add(self)
         db.session.commit()
@@ -227,44 +234,51 @@ class RoomieTrait(db.Model):
     )
 
     neat = db.Column(
-        db.Boolean
+        db.String(255)
     )
 
     quiet = db.Column(
-        db.Boolean
+        db.String(255)
     )
     visitors = db.Column(
-        db.Boolean
+        db.String(255)
     )
     smoker = db.Column(
-        db.Boolean
+        db.String(255)
     )
     drinker = db.Column(
-        db.Boolean
+        db.String(255)
     )
 
     earlybird = db.Column(
-        db.Boolean
+        db.String(255)
     )
 
     nightcrawler = db.Column(
-        db.Boolean
+        db.String(255)
     )
 
     snores = db.Column(
-        db.Boolean
+        db.String(255)
     )
 
     sharethings = db.Column(
-        db.Boolean
+        db.String(255)
     )
 
     studyinroom = db.Column(
-        db.Boolean
+        db.String(255)
     )
 
     music = db.Column(
-        db.Boolean
+        db.String(255)
+    )
+
+    lightsleeper = db.Column(
+        db.String(255)
+    )
+    darkroom = db.Column(
+        db.String(255)
     )
 
     def create(self):

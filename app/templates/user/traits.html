@@ -1,8 +1,12 @@
 {% extends "user/dashboard.html" %}
 {% block content %}
+<div class="wrapper__content">
+  <h5>Looking for roomates? Select traits.</h5>
+  <button class="btn" onclick="window.location='/traitQuiz'";>Pick Traits</button>
+  <button class="btn inverse-btn" onclick="window.location='/traitQuiz'";>Edit Traits</button>
+</div>
 
-<h5>Looking for roomates? Select traits.</h5>
-<form action="{{ url_for('user_bp.traits') }}" id="traits-form" method='POST'>
+<!-- <form action="{{ url_for('user_bp.traits') }}" id="traits-form" method='POST'>
     {% if error %}
     <p class=error><strong>Error:</strong> {{ error }}
     {% endif %}
@@ -10,7 +14,6 @@
     {% for trait in traits %}
 
     <fieldset class='trait-container'>
-      <!-- Form Name -->
       <div class="trait-head">
             {{ traits_questions[trait] }}
       </div>
@@ -30,7 +33,7 @@
           <input type="radio" id="roomie-{{trait}}-y" name="roomie-{{trait}}" value="True" required>
           No:
           <input type="radio" id="roomie-{{trait}}-n" name="roomie-{{trait}}" value="False" required>
-          <!-- <input type="hidden" id="hidden-roomie-{{trait}}" value="False" name="roomie-{{trait}}"> -->
+           <input type="hidden" id="hidden-roomie-{{trait}}" value="False" name="roomie-{{trait}}">
         </div>
 
 
@@ -44,7 +47,7 @@
       <input type="submit"  class="btn" value="Submit">
     </div>
 
-</form>
+</form> -->
 
 
 <script>
