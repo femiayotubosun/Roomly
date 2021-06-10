@@ -226,6 +226,7 @@ body {
   font-weight: 400;
 }
 .profile .profile_details .room {
+  cursor: pointer;
   font-size: 10px;
 }
 
@@ -320,87 +321,6 @@ body {
 
 #back_btn:hover {
   transform: scale(1.2);
-}
-/* Traits Page Styling */
-
-#traits-form {
-  margin-top: 15px;
-  display: flex;
-  justify-content: center;
-}
-
-#traits-container {
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-row-gap: 20px;
-}
-
-.trait-container {
-  background: #fff;
-  width: 220px;
-  height: 200px;
-  border-radius: 10px;
-  border: none;
-  text-align: center;
-  font-size: 13px;
-}
-.trait-head {
-  height: 40px;
-  line-height: 40px;
-  color: white;
-  background: #355070;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  font-weight: 500;
-  font-size: 15px;
-}
-
-.trait-content {
-  text-align: left;
-  height: 160px;
-  width: 100%;
-  bottom: 0;
-  display: grid;
-  grid-template-rows: 40% 1% 40%;
-  /* flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center; */
-}
-
-.trait {
-  width: 100%;
-  height: 30px;
-  border-radius: 5px;
-  text-align: left;
-  padding-left: 10px;
-  padding-right: 10px;
-  font-size: 15px;
-  display: flex;
-  grid-template-columns: 30% 20% 15% 20% 15%;
-  grid-column-gap: 10px;
-
-  line-height: 25px;
-}
-
-.trait:last-child {
-  margin-top: 20px;
-}
-
-.trait > input {
-  margin-top: 5px;
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  outline: none;
-}
-
-.traits-btn {
-  display: flex;
-  align-items: center;
 }
 /* Media queries for traits */
 
@@ -789,4 +709,17 @@ td:first-child {
 .inactive:hover {
   transform: scale(1);
   background: #e7e7e7;
+}
+
+.traits_content {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  justify-items: center;
+  /* margin-top: 100px; */
+  padding-top: 50px;
+  min-height: 300px;
+  border-radius: 15px;
 }

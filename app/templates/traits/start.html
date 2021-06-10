@@ -1,6 +1,6 @@
 {% extends "traits/trait_layout.html" %}
 {% block content %}
 <div class="wrapper__content">
-    <p id="display" class="question">Welcome, {{ user.name }}. Please answer a few questions to tell us about yourself.</p>
-    <button class="button button--blue" id="start-btn" onclick="window.location='/traitQuiz/quiz';" class="button--blue">Start Quiz</button>
+    <p id="display">Welcome, {{ user.name }}.<br>Please answer a few questions to tell us about yourself.</p>
+    <button class="btn" id="start-btn" onclick="window.location='/traitQuiz/quiz';">Start Quiz</button>
 {% endblock %}

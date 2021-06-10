@@ -23,10 +23,9 @@ def signup():
 
         user = User.query.filter_by(username=username).first()
 
-        # Check if user already exists
         if user:
-            flash('Username already exists', 'error')
-            return redirect(url_for('main.homepage'))
+            flash(u'Username already exists', 'error')
+            return None
 
         new_user = User(email=email, username=username,
                         password=generate_password_hash(password, method='sha256'))

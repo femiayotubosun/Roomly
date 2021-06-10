@@ -74,7 +74,7 @@ function setOldAnswers() {
     checkOption(roomieYesBtn);
     unCheckOption(roomieNeutBtn);
     unCheckOption(roomieNoBtn);
-  } else if (answer[1] === "Maybe") {
+  } else if (answer[1] === "Neutral") {
     checkOption(roomieNeutBtn);
     unCheckOption(roomieYesBtn);
     unCheckOption(roomieNoBtn);
@@ -124,7 +124,7 @@ function nextQuestion() {
   if (roomieYesBtn.classList.contains("checked")) {
     answer[1] = "True";
   } else if (roomieNeutBtn.classList.contains("checked")) {
-    answer[1] = "Maybe";
+    answer[1] = "Neutral";
   } else if (roomieNoBtn.classList.contains("checked")) {
     answer[1] = "False";
   } else {
@@ -162,7 +162,7 @@ function previousQuestion() {
   if (roomieYesBtn.classList.contains("checked")) {
     answer[1] = "True";
   } else if (roomieNeutBtn.classList.contains("checked")) {
-    answer[1] = "Maybe";
+    answer[1] = "Neutral";
   } else if (roomieNoBtn.classList.contains("checked")) {
     answer[1] = "False";
   } else {
@@ -263,7 +263,7 @@ function submitAnswers() {
   if (roomieYesBtn.classList.contains("checked")) {
     answer[1] = "True";
   } else if (roomieNeutBtn.classList.contains("checked")) {
-    answer[1] = "Maybe";
+    answer[1] = "Neutral";
   } else if (roomieNoBtn.classList.contains("checked")) {
     answer[1] = "False";
   } else {

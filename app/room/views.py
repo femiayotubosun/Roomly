@@ -32,9 +32,9 @@ def room(roomId):
             if current_user.id == user.id:
                 user.match = "You"
             else:
-                user.match = match_traits(user_traits, r_traits)
+                user.match = match_traits(current_user.id, user.id)
 
-    print(occupants_match)
+    # print(occupants_match)
     if request.method == 'POST':
         if len(room.users) >= room.bedspace:
             flash('This room is full.', 'fair')

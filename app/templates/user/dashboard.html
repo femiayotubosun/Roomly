@@ -70,7 +70,7 @@
                             <div class="name">{{ user.username.upper() }}</div>            
                         {% endif %}
                         {%if user.room %}
-                            <div class="room success_text">{{user.room.hostel.name.upper()}}: Room {{user.room.name}}</div>
+                            <div class="room success_text" onclick="window.location='/rooms/{{user.room.id}}';">{{user.room.hostel.name.upper()}}: Room {{user.room.name}}</div>
                         {% else %}
                             <div class="room error_text">No Room Yet</div>
                         {% endif %}
@@ -83,27 +83,27 @@
             </div>
         </div>
     </div>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
 
+        <!-- The Modal -->
+            <div id="popupModal" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content  {{category }}">
+                    <p> {{ message }}</p>
+                    <span class="close">&times;</span>
+                </div>
+            
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
     <div class="main-content">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
 
-                <!-- The Modal -->
-                    <div id="popupModal" class="modal">
-                        <!-- Modal content -->
-                        <div class="modal-content  {{category }}">
-                            <p> {{ message }}</p>
-                            <span class="close">&times;</span>
-                        </div>
-                    
-                    </div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-        <div id="back_btn" onclick="history.back();">
+        <!-- <div id="back_btn" onclick="history.back();">
             <i class='bx bxs-left-arrow-circle' ></i>
-        </div>
+        </div> -->
         {% block content %}{% endblock %}
     </div>
     <script src="{{  url_for('static', filename='js/user/script.js') }}"></script>

@@ -39,18 +39,20 @@
                 </form>
 
                 <!-- Use Ajax Request -->
-                <form action="/" id="signup" class="sign-up-form">
+                <form action="{{url_for('main.signup')}}" method="POST" id="signup" class="sign-up-form">
                     <h2 class="title">Sign Up</h2>
-                    {% with messages = get_flashed_messages(with_categories=true) %}
-                    {% if messages %}
-                        {% for category, message in messages %}
-                            <div class="{{ category }}">
-                                {{ message }}
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-                {% endwith %}
-                    <p id="signup-message"></p>
+
+                    <p id="signup-message">
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                <div class="{{ category }}">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                    </p>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
                         {{ signup_form.username(placeholder="Username") }}
@@ -105,7 +107,7 @@
         container.classList.remove("sign-up-mode");
         });
 
-        signup.onsubmit = async(e) => {
+    /*   signup.onsubmit = async(e) => {
             e.preventDefault()
             
             let res = fetch('/signup', {
@@ -118,7 +120,7 @@
              
             );
 
-        }
+        } */
 
     </script>
 </body>

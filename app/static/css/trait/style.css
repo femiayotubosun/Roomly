@@ -1,8 +1,8 @@
-@import url("https://fonts.googleapis.com/css?family=Quicksand:400,500,700&subset=latin-ext");
+@import url("https://fonts.googleapis.com/css?family=Poppins:wght@200;300;400;500;600;700&subset=latin-ext");
 
 * {
   box-sizing: border-box;
-  font-family: "Quicksand", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 body {
@@ -75,7 +75,7 @@ button {
   background: none;
   border: none;
   outline: none;
-  font-family: "Quicksand", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 700;
   font-size: 19px;
   margin: 15px 35px;
@@ -131,10 +131,14 @@ button {
 
 .wrapper__content {
   padding-top: 60px;
+  padding-left: 30px;
+  padding-right: 30px;
   display: flex;
   flex-direction: column;
   justify-items: center;
   text-align: center;
+  font-size: 18px;
+  font-weight: 700;
   /* justify-self: center; */
   /* background-color: yellow; */
 }
@@ -187,7 +191,7 @@ button {
   text-align: left;
   transition: 0.1s;
   font-size: 15px;
-  font-family: "Quicksand" sans-serif;
+  font-family: "Poppins" sans-serif;
   /* border: 1px solid #8290a1; */
 }
 
@@ -297,4 +301,47 @@ button {
 
 #next.hidden {
   display: none;
+}
+
+.btn {
+  width: 150px;
+  height: 48.07px;
+  background: #355070;
+  color: #fff;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  text-align: center;
+  font-size: 13px;
+  line-height: 48.07px;
+  /* padding: 10px; */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.inverse-btn {
+  background: none;
+  border: 1px solid #355070;
+  color: #355070;
+}
+
+.traits-btn {
+  width: 120px;
+  font-size: 30px;
+  text-align: right;
+
+  /* padding: 10px; */
+}
+
+.btn:hover {
+  background: #788a9f;
+  box-shadow: 0 5px 10px rgb(0, 0, 0, 0.2);
+  transform: scale(1.1);
+}
+
+.inverse-btn:hover {
+  border: none;
+  background: #355070;
+  color: #fff;
 }

@@ -8,6 +8,7 @@ trait_bp = Blueprint('trait_bp', __name__, template_folder='templates')
 @trait_bp.route('/', methods=['GET', 'POST'])
 @login_required
 def quiz_home():
+    # Send questions actually.
     return render_template('traits/start.html', user=current_user)
 
 
@@ -18,9 +19,8 @@ def quiz():
         data = request.json
         trait_to_set = data['answerArray']
         set_user_trait(current_user.id, trait_to_set)
-        return {'message': 'success'}
-        # return redirect(url_for('trait_bp.end_quiz'))
 
+        return {'message': 'success'}
     return render_template('traits/quiz.html', user=current_user)
 
 
