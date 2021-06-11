@@ -1,41 +1,17 @@
 // A handler function
 // get array from back end
-const traitBank = {
-  neat: {
-    user: "",
-    roomie: "",
-  },
-  quiet: "Are you quiet?",
-  visitors: "Do you often have visitors over?",
-  smoker: "Are you a smoker?",
-  drinker: "Are you a drinker?",
-  earlybird: "Are you a morning person?",
-  nightcrawler: "Are you a noctornal person?",
-  snores: "Do you snore?",
-  sharingthings: "Are you open to sharing things?",
-  studyintheroom: "Do you study in the room?",
-  music: "Do you (often) play music in the room?",
-  lightsleeper: "Are you a light sleeper?",
-  darkroom: "Do you like your room lighting dark?",
-};
 
-qtnArray = [
-  "Are you neat?",
-  "Are you quiet?",
-  "Do you often have visitors over?",
-  "Are you a smoker?",
-  "Are you a drinker?",
-  "Are you a morning person?",
-  "Are you a noctornal person?",
-  "Do you snore?",
-  "Are you open to sharing things?",
-  "Do you study in the room?",
-  "Do you (often) play music in the room?",
-  "Are you a light sleeper?",
-  "Do you like your room lighting dark?",
-];
+var questionBank = data.questionBank;
+var traits = data.traits;
+let answerBank = data.answerBank;
+if (answerBank.length == 0) {
+  answerBank = new Array(questionBank.length).fill("");
+}
+// roomieTraits = data.roomieTraits;
 
-var answerArray = ["", "", "", "", "", "", "", "", "", "", "", "", ""];
+// console.log(userTraits);
+
+// var answerBank = new Array(questionBank.length).fill("");
 // Question Element
 question = document.querySelector("#quiz-question");
 
@@ -61,7 +37,7 @@ let currentQuestion = 0;
 // Function that modifies the Question element based on the current
 // Position in the Question array
 function setOldAnswers() {
-  answer = answerArray[currentQuestion];
+  answer = answerBank[currentQuestion];
   if (answer[0] === "True") {
     checkOption(userYesBtn);
     unCheckOption(userNoBtn);
@@ -87,11 +63,11 @@ function setOldAnswers() {
 
 function setCurrentQuestion() {
   // Display current Question
-  question.innerHTML = `[${currentQuestion + 1}/${qtnArray.length}] ${
-    qtnArray[currentQuestion]
+  question.innerHTML = `[${currentQuestion + 1}/${questionBank.length}] ${
+    questionBank[currentQuestion]
   }`;
 
-  if (!answerArray[currentQuestion] == "") {
+  if (!answerBank[currentQuestion] == "") {
     setOldAnswers();
   } else {
     unCheckOption(userYesBtn);
@@ -106,12 +82,11 @@ function setCurrentQuestion() {
 function nextQuestion() {
   // Add submit buttton
 
-  if (currentQuestion === qtnArray.length - 2) {
+  if (currentQuestion === questionBank.length - 2) {
     nextBtn.classList.add("hidden");
     submitBtn.classList.remove("hidden");
   }
   let answer = [];
-  console.log("Setting new answer");
   if (userYesBtn.classList.contains("checked")) {
     answer[0] = "True";
   } else if (userNoBtn.classList.contains("checked")) {
@@ -131,13 +106,13 @@ function nextQuestion() {
     alert("Please pick an option before pressing next.");
     return null;
   }
-  answerArray[currentQuestion] = answer;
+  answerBank[currentQuestion] = answer;
 
-  if (currentQuestion <= 12) {
+  if (currentQuestion <= questionBank.length - 1) {
     currentQuestion++;
   }
   // Set answers if we hav answered the question
-  if (!answerArray[currentQuestion] == "") {
+  if (!answerBank[currentQuestion] == "") {
     setOldAnswers();
   }
   setCurrentQuestion();
@@ -170,7 +145,7 @@ function previousQuestion() {
   }
 
   if (answer.length > 0) {
-    answerArray[currentQuestion] = answer;
+    answerBank[currentQuestion] = answer;
   }
 
   if (currentQuestion >= 1) {
@@ -270,11 +245,11 @@ function submitAnswers() {
     alert("Please pick an option before pressing next.");
     return null;
   }
-  answerArray[currentQuestion] = answer;
+  answerBank[currentQuestion] = answer;
   createTraits({
-    answerArray,
+    answerBank,
   });
-  // console.log(answerArray);
+  // console.log(answerBank);
 }
 
 // Handle next and previous buttons

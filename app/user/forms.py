@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
+from wtforms import StringField, SubmitField, SelectField, FileField
 from wtforms.validators import Length
 
 
@@ -9,4 +9,7 @@ class ProfileForm(FlaskForm):
     school = StringField("School")
     email = StringField("Email")
     number = StringField("Phone No")
+    gender = SelectField('Gender', choices=[
+                         '--Select your gender--', 'Male', 'Female'])
+    photo = FileField('File')
     submit = SubmitField("Update Profile")

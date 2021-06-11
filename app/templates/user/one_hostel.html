@@ -1,5 +1,8 @@
 {% extends "user/dashboard.html" %}
 {% block content%}
+<div id="back_btn" onclick="window.location='/hostels';">
+    <i class='bx bxs-left-arrow-circle' ></i>
+</div>
 <div class="hostel-container">
     <h3 class=hostel-name >{{hostel.name.upper()}}</h3>
 

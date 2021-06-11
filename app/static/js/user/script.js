@@ -1,14 +1,33 @@
+var loader = document.querySelector(".loader");
+window.addEventListener("load", vanish);
+
+function vanish() {
+  loader.classList.add("disappear");
+}
+
 let btn = document.querySelector("#toggle-sidebar-btn");
 let sidebar = document.querySelector(".sidebar");
 let searchBtn = document.querySelector(".bx-search");
 
 btn.onclick = function () {
   sidebar.classList.toggle("active");
+  if (sessionStorage.getItem("hideSidebar") === "true") {
+    sessionStorage.setItem("hideSidebar", false);
+  } else if (
+    sessionStorage.getItem("hideSidebar") === null ||
+    sessionStorage.getItem("hideSidebar") === "false"
+  ) {
+    sessionStorage.setItem("hideSidebar", true);
+  }
 };
 
-searchBtn.onclick = function () {
-  sidebar.classList.toggle("active");
-};
+console.log(sessionStorage.getItem("hideSidebar"));
+
+if (sessionStorage.getItem("hideSidebar") == "null") {
+  sidebar.classList.remove("active");
+} else if (sessionStorage.getItem("hideSidebar") == "true") {
+  sidebar.classList.add("active");
+}
 
 // Alert box handler
 var modal = document.getElementById("popupModal");
@@ -25,3 +44,8 @@ if (closeModal) {
     }
   };
 }
+
+// localStorage.setItem("toggleState", true)
+// Sidebar is hidden
+
+// localStorage.getItem("toggelLState")

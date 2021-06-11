@@ -1,26 +1,75 @@
 {% extends "user/dashboard.html" %}
 {% block content %}
-
-<h3>Profile Page</h3>
-
-<form action="{{ url_for('user_bp.settings') }}"  method="POST">
+<form class="update_profile" id="update_user" action="{{ url_for('user_bp.settings') }}" enctype="multipart/form-data" method="POST">
  <h2 class="title">Update Profile</h2>
  <div class="input-field">
-     {{ form.name(placeholder="Name")}}
+    <i class='bx bxs-user'>
+    </i> {{ form.name(placeholder="First Name  Last Name")}}
  </div>
  <div class="input-field">
+    <i class='bx bxs-home' ></i> 
     {{ form.address(placeholder="Address")}}
 </div>
 <div class="input-field">
+    <i class='bx bxs-school'></i> 
     {{ form.school(placeholder="School")}}
 </div>
 <div class="input-field">
+    <i class='bx bxs-envelope'></i>
     {{ form.email(placeholder="Email")}}
 </div>
 <div class="input-field">
+    <i class='bx bxs-phone' ></i>
     {{ form.number(placeholder="Number")}}
 </div>
+<div class="input-field">
+    <i class='bx bxl-ok-ru'></i>
+    {{ form.gender(placeholder="Gender")}}
+    
+</div>
+<div class="upload-field">
+    <p>Upload photo</p> {{ form.photo }}
+</div>
+   
+
     {{ form.submit(class_="btn solid")}}
 </form>
 
+<script>
+
+    formObj = document.forms['update_user']
+
+    nameVal = "{{user.name}}"
+    addressVal = "{{user.address}}"
+    schoolVal = "{{user.school}}"
+    emailVal = "{{user.email}}"
+    numVal = "{{user.number}}"
+    genderVal = "{{ user.gender }}"
+
+    if (!(nameVal === "None")){
+        formObj.elements['name'].value = nameVal;
+    }
+    if (!(addressVal == "None")){
+        formObj.elements['address'].value = addressVal;
+    }
+    if (!(schoolVal == "None")){
+        formObj.elements['school'].value = schoolVal;
+    }
+    if(! (emailVal == "None")){
+        formObj.elements['email'].value = emailVal;
+    }
+
+    if(!(numVal == "None")){
+        formObj.elements['number'].value = numVal
+    }
+
+    if(genderVal === "Male" || genderVal === "Female"){
+        formObj.elements['gender'].value = genderVal
+    }
+// nameVal = {{user.name}}
+
+console.log(genderVal)
+
+
+</script>
 {% endblock %}

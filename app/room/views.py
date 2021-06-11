@@ -3,8 +3,9 @@ from flask_login import current_user
 from flask_login.utils import login_required
 from app.exts import db
 from app.common.service import get_one_query
+from app.common.traits import traits_strings, db_traits
 from app.common.algorithms import match_traits
-from app.models import Room, RoomieTrait, User, UserTrait
+from app.models import Room, RoomieTrait, UserTrait
 
 room_bp = Blueprint('room_bp', __name__, template_folder='templates')
 
@@ -19,15 +20,14 @@ def room(roomId):
         return redirect(url_for('user_bp.traits'))
 
     room = get_one_query(Room, roomId)
-    occupants_match = []
-    # user_traits = get_one_query(RoomieTrait, current_user.id)
-
     if user_traits and len(room.users) > 0:
         for user in room.users:
-            if(user.id == current_user.id):
-                r_traits = user_traits
-            else:
-                r_traits = get_one_query(UserTrait, user.id)
+            user.traits = []
+            room_mem_trait = get_one_query(UserTrait, user.id)
+
+            for trait in db_traits:
+                if getattr(room_mem_trait, trait):
+                    user.traits.append(traits_strings[trait])
 
             if current_user.id == user.id:
                 user.match = "You"

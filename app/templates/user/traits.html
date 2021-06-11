@@ -1,7 +1,10 @@
 {% extends "user/dashboard.html" %}
 {% block content %}
+  <div id="back_btn" onclick="window.location='/user/profile';">
+      <i class='bx bxs-left-arrow-circle' ></i>
+  </div>
 <div class="traits_content">
-  {% if user.name %}
+  {% if user.name and user.gender %}
     {%if traits %}
       <h5>You have already selected your traits. Make changes?</h5>
       <button class="btn inverse-btn" onclick="window.location='/traitQuiz'";>Edit Traits</button>

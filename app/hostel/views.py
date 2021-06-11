@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, flash
 from flask_login import login_required, current_user
-from app.models import Hostel, UserTrait, RoomieTrait
+from app.models import Hostel, UserTrait
 from app.common.service import get_all_query, get_one_query
 from app.common.algorithms import match_traits
 
@@ -29,6 +29,10 @@ def hostel(id):
         flash('Please fill traits before picking your room', 'error')
         return redirect(url_for('user_bp.traits'))
     hostel = get_one_query(Hostel, id)
+
+    if not((hostel.hosteltype == "Co-Ed") or (hostel.hosteltype == current_user.gender)):
+        flash('You cannot be assigned to this hostel', 'error')
+        return redirect(url_for('hostel_bp.hostels'))
 
     # Check for empty rooms and occupied rooms
     empty_rooms = []

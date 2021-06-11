@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Import fontawesome -->
-    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href={{ url_for('static', filename='boxicons-2.0.7/css/boxicons.min.css')}} rel='stylesheet'>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main/style.css') }}">
     <title>Room.ly</title>
 </head>
@@ -28,11 +28,11 @@
                     {% endwith %}
 
                     <div class="input-field">
-                        <i class="fas fa-user"></i>
+                        <i class='bx bxs-user' ></i>
                         {{ signin_form.username(placeholder="Username") }}
                     </div>
                     <div class="input-field">
-                        <i class="fas fa-lock"></i>
+                        <i class='bx bxs-lock-alt'></i>
                         {{ signin_form.password(placeholder="Password" )}}
                     </div>
                         {{ signin_form.submit(class_="btn solid")  }}
@@ -54,15 +54,15 @@
                     {% endwith %}
                     </p>
                     <div class="input-field">
-                        <i class="fas fa-user"></i>
+                        <i class='bx bxs-user'></i>
                         {{ signup_form.username(placeholder="Username") }}
                     </div>
                     <div class="input-field">
-                        <i class="fas fa-envelope"></i>
+                        <i class='bx bxs-envelope'></i>
                         {{ signup_form.email(placeholder="Email") }}
                     </div>
                     <div class="input-field">
-                        <i class="fas fa-lock"></i>
+                        <i class='bx bxs-lock-alt'></i>
                         {{ signup_form.password(placeholder="Password") }}
                     </div>
                     {{ signup_form.submit(class_="btn solid") }}
@@ -94,34 +94,32 @@
     </div>
     <script>
 
+    var signupmode = '{{ signinmode }}'
         const sign_in_btn = document.querySelector("#sign-in-btn");
         const sign_up_btn = document.querySelector("#sign-up-btn");
         const container = document.querySelector(".container");
         const message = document.querySelector("#signup-message");
 
         sign_up_btn.addEventListener("click", () => {
+
         container.classList.add("sign-up-mode");
+        if (sessionStorage.getItem("signUpMode") === "true") {
+            sessionStorage.setItem("signUpMode", false);
+          } else if (
+            sessionStorage.getItem("signUpMode") === null ||
+            sessionStorage.getItem("signUpMode") === "false"
+          ) {
+            sessionStorage.setItem("signUpMode", true);
+          }
         });
 
         sign_in_btn.addEventListener("click", () => {
         container.classList.remove("sign-up-mode");
         });
 
-    /*   signup.onsubmit = async(e) => {
-            e.preventDefault()
-            
-            let res = fetch('/signup', {
-                method: 'POST',
-                body: new FormData(signup)
-            }).then(res =>{
-                // Can do a change message change here
-                window.location.replace('/');
-            }
-             
-            );
-
-        } */
-
+        if(sessionStorage.getItem("signUpMode") == "true" && signupmode === 'false'){
+            sign_up_btn.click()
+        }
     </script>
 </body>
 </html>

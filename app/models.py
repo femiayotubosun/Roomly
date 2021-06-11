@@ -130,6 +130,14 @@ class User(db.Model, UserMixin):
         nullable=False
     )
 
+    gender = db.Column(
+        db.String(255)
+    )
+
+    photo_name = db.Column(
+        db.String(255)
+    )
+
     room_id = db.Column(
         db.Integer,
         db.ForeignKey('room.id')

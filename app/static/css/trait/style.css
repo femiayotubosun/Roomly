@@ -149,6 +149,11 @@ button {
   /* bottom: 0; */
 }
 
+#end-btn {
+  width: 30%;
+  margin: auto;
+}
+
 .quiz__content {
   min-width: 700px;
   min-height: 400px;
@@ -344,4 +349,10 @@ button {
   border: none;
   background: #355070;
   color: #fff;
+}
+
+.question2.warning {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #00000066;
 }

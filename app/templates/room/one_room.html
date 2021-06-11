@@ -1,10 +1,11 @@
 {% extends "user/dashboard.html" %}
 
 {% block content%}
-
+<div id="back_btn" onclick="window.history.back();">
+    <i class='bx bxs-left-arrow-circle' ></i>
+</div>
 <div class="room-container">
     <div class="room_img">
-
     </div>
     <div class="room_details">
         <div class="room_name">
@@ -27,13 +28,20 @@
             {%for user in room.users %}
                 <div class="card__container">
                     <div class="profile__img">
-        
+                        {% if user.photo_name %}
+                        <img src={{ url_for('static', filename='img/user_photos/' + user.photo_name) }}  alt="profile pic">
+                        {% else %}
+                        <!-- <a href="https://www.vecteezy.com/free-vector/human">Human Vectors by Vecteezy</a> -->
+                        <img src={{ url_for('static', filename='img/user_photos/profile3.jpg')}} alt="profile pic">
+                        {% endif %}
                     </div>
                     <div class="text__content">
                         <h1>{{ user.name }}</h1>
                         <h2>Traits</h2>
-                        <p class="text__description">Smokes, Drinks, Studies in Room,
-                            Neat, Quiet, Music, Has Visitors...
+                        <p class="text__description">
+                            {% for trait in user.traits %}
+                                {{trait}}{{',' if not loop.last else "."}}
+                            {% endfor %}
                         </p>
                         <div class="text__btn">
                             <h3> More...</h3>

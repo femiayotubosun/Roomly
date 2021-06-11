@@ -7,15 +7,20 @@ from app.models import User
 main = Blueprint('main', __name__, template_folder='templates')
 
 
+signinmode = 'false'
+
+
 @main.route('/', methods=['GET'])
 def homepage():
+    sign = signinmode
     signin_form = SignInForm()
     signup_form = SignUpForm()
-    return render_template('main/index.html', signin_form=signin_form, signup_form=signup_form)
+    return render_template('main/index.html', signin_form=signin_form, signup_form=signup_form,  signinmode=signinmode)
 
 
 @main.route('/signup', methods=['POST'])
 def signup():
+
     if request.method == 'POST':
         username = request.form['username']
         email = request.form['email']
@@ -25,17 +30,18 @@ def signup():
 
         if user:
             flash(u'Username already exists', 'error')
-            return None
+            return redirect(url_for('main.homepage'))
 
         new_user = User(email=email, username=username,
                         password=generate_password_hash(password, method='sha256'))
 
         new_user.create()
         flash('Sign-up successful. Please Sign-in.', 'success')
-        return {
-            'message': 'SUCCESS'
-        }
-    return redirect(url_for('main.homepage'))
+        global signinmode
+        signinmode = 'true'
+        return redirect(url_for('main.homepage'))
+
+    return redirect(url_for('main.homepage'),)
 
 
 @main.route('/', methods=['POST'])
@@ -63,5 +69,7 @@ def signin():
 @login_required
 @main.route('/logout')
 def logout():
+    global signinmode
+    signinmode = 'true'
     logout_user()
     return redirect(url_for('main.homepage'))

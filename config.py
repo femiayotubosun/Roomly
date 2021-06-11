@@ -19,7 +19,12 @@ class Config:
     SECRET_KEY = environ.get('APP_SECRET_KEY')
     STATIC_FOLDER = 'static'
     TEMPLATES_FOLDER = 'templates'
+    UPLOAD_EXTENSIONS = ['.jpg', '.png', '.gif']
+    UPLOAD_FOLDER = '/static/img/user_photos'
 
     # Database
     SQLALCHEMY_DATABASE_URI = environ.get('DATABASE')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+    # FLASK-uPLOADS
+    UPLOADED_FILES_DEST = 'static'
