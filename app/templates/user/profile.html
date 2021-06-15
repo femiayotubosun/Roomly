@@ -3,7 +3,13 @@
 
 <div class="profile-container">
     <div class="profile-top">
-        <div class="profile-greeting"><h3>Hello {{user.name.split(' ')[0].title()}}, welcome back!</h3></div>
+        <div class="profile-greeting">
+            {% if user.name %}
+            <h3>Hello {{user.name.split(' ')[0].title()}}, welcome back!</h3>
+            {%else%}
+            <h3>Hello {{user.username}}, welcome back!</h3>
+            {% endif %}
+        </div>
         <div class="profile-img">
             {% if user.photo_name %}
             <img src={{  url_for('static', filename='img/user_photos/' + user.photo_name ) }} alt="profile pic">
@@ -43,7 +49,7 @@
                     {% if user.name %}
                         <p>{{user.name.title()}}</p>
                     {% else %}
-                        <p></p>
+                        <p>Not yet set</p>
                     {%endif%}
                         <p>{{user.username}}</p>
                         <p>{{user.email}}</p>
@@ -81,8 +87,10 @@
                 </div>
 
                 <div class="profile-page__hostel-room">
+                    {%if user.room %}
                     <p>Room {{user.room.name}}</p>
                     <p>{{user.room.hostel.name}}</p>
+                    {%endif%}
                 </div>
             </div>
             <div class="profile-traits">

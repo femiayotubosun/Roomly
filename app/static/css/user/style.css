@@ -47,14 +47,15 @@ body {
 }
 
 .logo_content .logo img {
-  height: 28px;
-  width: 28px;
+  height: 30px;
+  width: 170px;
   margin-right: 2px;
+  object-fit: contain;
 }
 
 .logo_content .logo .logo_name {
-  font-size: 20px;
-  font-weight: 400;
+  /* font-size: 20px;
+  font-weight: 400; */
 }
 
 .sidebar #toggle-sidebar-btn {
@@ -582,7 +583,7 @@ td:first-child {
 }
 
 .room_img {
-  background-image: url(../../img/user/room1.png);
+  background-image: url(../../img/user/room.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
