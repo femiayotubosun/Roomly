@@ -12,7 +12,7 @@ hostel_bp = Blueprint('hostel_bp', __name__, template_folder='templates')
 def hostels():
     # Check if user has done traits
     user_traits = get_one_query(UserTrait, current_user.id)
-    if not user_traits:
+    if not user_traits or not current_user.gender:
         flash('Please fill traits before picking your room', 'error')
         return redirect(url_for('user_bp.traits'))
 

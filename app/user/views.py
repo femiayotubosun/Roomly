@@ -23,10 +23,10 @@ def dashboard():
 @user_bp.route('/<id>', methods=['GET'])
 @login_required
 def user(id):
-
     user = get_one_query(User, id)
     user_traits = get_one_query(UserTrait, user.id)
     roomie_traits = get_one_query(RoomieTrait, user.id)
+
     user.traits = []
     user.roomie_traits = []
     if user_traits and roomie_traits:
@@ -41,7 +41,7 @@ def user(id):
     return render_template('user/one_user.html', user=current_user, thisuser=user)
 
 
-@user_bp.route('/edit_profile', methods=['POST', 'GET'])
+@user_bp.route('/editProfile', methods=['POST', 'GET'])
 @login_required
 def settings():
     if request.method == 'POST':
@@ -106,5 +106,3 @@ def profile():
 def traits():
     traits = get_one_query(UserTrait, current_user.id)
     return render_template('user/traits.html', user=current_user, traits=traits)
-# traits=db_traits, traits_questions=traits_questions,
-#                            user=current_user, user_trait=trait_obj_to_list(user_trait), roomie_trait=trait_obj_to_list(roomie_trait)

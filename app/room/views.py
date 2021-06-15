@@ -25,8 +25,9 @@ def room(roomId):
             user.traits = []
             for trait in db_traits:
                 if getattr(user_traits, trait):
-                    print("Yes")
                     user.traits.append(traits_strings[trait])
+                if db_traits[4] == trait:
+                    break
 
     # print(occupants_match)
     if request.method == 'POST':
