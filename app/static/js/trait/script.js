@@ -4,6 +4,7 @@
 var questionBank = data.questionBank;
 var traits = data.traits;
 let answerBank = data.answerBank;
+var progress = document.querySelector("#progress-bar");
 if (answerBank.length == 0) {
   answerBank = new Array(questionBank.length).fill("");
 }
@@ -18,8 +19,6 @@ question = document.querySelector("#quiz-question");
 // User Answer Buttons
 userYesBtn = document.querySelector("#user-yes");
 userNoBtn = document.querySelector("#user-no");
-userYChck = document.querySelector("#user-yes-check");
-userNChck = document.querySelector("#user-no-check");
 
 // Roomie Answer Buttons
 roomieYesBtn = document.querySelector("#roomie-yes");
@@ -34,6 +33,11 @@ submitBtn = document.querySelector("#submit");
 // Set the default postion in the array to be 0
 let currentQuestion = 0;
 
+function move() {
+  width = ((currentQuestion + 1) / questionBank.length) * 470;
+  progress.innerHTML = `${currentQuestion + 1}/${questionBank.length}`;
+  progress.style.width = width + "px";
+}
 // Function that modifies the Question element based on the current
 // Position in the Question array
 function setOldAnswers() {
@@ -63,10 +67,8 @@ function setOldAnswers() {
 
 function setCurrentQuestion() {
   // Display current Question
-  question.innerHTML = `[${currentQuestion + 1}/${questionBank.length}] ${
-    questionBank[currentQuestion]
-  }`;
-
+  question.innerHTML = `${questionBank[currentQuestion]}`;
+  move();
   if (!answerBank[currentQuestion] == "") {
     setOldAnswers();
   } else {
@@ -123,6 +125,7 @@ function previousQuestion() {
   if (currentQuestion <= 0) {
     null;
   }
+
   // If the any option is checked, set it.
   let answer = [];
 
@@ -151,7 +154,10 @@ function previousQuestion() {
   if (currentQuestion >= 1) {
     currentQuestion--;
   }
-
+  if (!(currentQuestion === questionBank.length - 3)) {
+    nextBtn.classList.remove("hidden");
+    submitBtn.classList.add("hidden");
+  }
   setCurrentQuestion();
 }
 

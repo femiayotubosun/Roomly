@@ -23,11 +23,13 @@ def hostels():
 @hostel_bp.route('/<id>', methods=['GET'])
 @login_required
 def hostel(id):
+
     # Check if user has done traits
     user_traits = get_one_query(UserTrait, current_user.id)
     if not user_traits:
         flash('Please fill traits before picking your room', 'error')
         return redirect(url_for('user_bp.traits'))
+
     hostel = get_one_query(Hostel, id)
 
     if not((hostel.hosteltype == "Co-Ed") or (hostel.hosteltype == current_user.gender)):
@@ -39,7 +41,7 @@ def hostel(id):
     occupied_rooms = []
 
     for room in hostel.rooms:
-        if len(room.users) == 0:
+        if len(room.occupants) == 0:
             empty_rooms.append(room)
             continue
         occupied_rooms.append(room)
@@ -47,7 +49,7 @@ def hostel(id):
     for room in occupied_rooms:
         accum = 0
         room_mem = 0
-        for user in room.users:
+        for user in room.occupants:
             if(user.id == current_user.id):
                 continue
             else:

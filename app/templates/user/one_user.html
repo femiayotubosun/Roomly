@@ -1,24 +1,28 @@
 {% extends "user/dashboard.html" %}
 {% block content %}
-
+<div id="back_btn" onclick="window.history.back();">
+    <i class='bx bxs-left-arrow-circle' ></i>
+</div>
 <div class="profile-container">
     <div class="profile-top">
-        <div class="profile-greeting"><h3>Hello {{user.name.split(' ')[0].title()}}, welcome back!</h3></div>
+        <div class="profile-greeting"><h3>{{thisuser.name.title()}}</h3></div>
         <div class="profile-img">
-            {% if user.photo_name %}
-            <img src={{  url_for('static', filename='img/user_photos/' + user.photo_name ) }} alt="profile pic">
+            {% if thisuser.photo_name %}
+            <img src={{  url_for('static', filename='img/user_photos/' + thisuser.photo_name ) }} alt="profile pic">
             {% else %}
             <img src={{  url_for('static', filename='img/user_photos/profile.jpg') }} alt="profile pic">
             {% endif %}
             <div class="profile-name">
-                {% if user.name %}
-                    <div class="profile-name">{{ user.name.title() }}</div>
+                {% if thisuser.name %}
+                    <div class="profile-name">{{ thisuser.name.title() }}</div>
                 {% else %}
-                    <div class="profile-name">{{ user.username.title() }}</div>            
+                    <div class="profile-name">{{ thisuser.username.title() }}</div>            
                 {% endif %}
                     <div class="profile-school">
-                {% if user.school %}
-                    <div class="profile-name">{{ user.school.title() }}</div>          
+                {% if thisuser.school %}
+                    <div class="profile-name">{{ thisuser.school.title() }}</div>
+                {% else%}
+                <div class="profile-namr">Not yet picked.</div>          
                     {% endif %}
                     </div>
             </div>
@@ -40,25 +44,25 @@
                     <p>School</p>
                 </div>
                 <div class="profile-students-details__right">
-                    {% if user.name %}
-                        <p>{{user.name.title()}}</p>
+                    {% if thisuser.name %}
+                        <p>{{thisuser.name.title()}}</p>
                     {% else %}
                         <p></p>
                     {%endif%}
-                        <p>{{user.username}}</p>
-                        <p>{{user.email}}</p>
-                    {% if user.number %}
-                        <p>{{user.number}}</p>
+                        <p>{{thisuser.username}}</p>
+                        <p>{{thisuser.email}}</p>
+                    {% if thisuser.number %}
+                        <p>{{thisuser.number}}</p>
                     {% else %}
                         <p></p>
                     {% endif %}
-                    {% if user.address %}
-                        <p>{{user.address}}</p>
+                    {% if thisuser.address %}
+                        <p>{{thisuser.address}}</p>
                     {% else %}
                         <p></p>
                     {% endif %}
-                    {% if user.school %}
-                        <p>{{user.school}}</p>
+                    {% if thisuser.school %}
+                        <p>{{thisuser.school}}</p>
                     {% else %}
                         <p></p>
                     {% endif %}
@@ -66,8 +70,8 @@
             </div>
             <div class="profile-about-me">
                 <h3>About me</h3>
-                {% if user.about %}
-                <p style="color:#8998AB"> {{user.about}}.</p>
+                {% if thisuser.about %}
+                <p style="color:#8998AB"> {{thisuser.about}}.</p>
                 {% else %}
                 <p style="color:#8998AB">...</p>
                 {% endif %}
@@ -81,8 +85,8 @@
                 </div>
 
                 <div class="profile-page__hostel-room">
-                    <p>Room {{user.room.name}}</p>
-                    <p>{{user.room.hostel.name}}</p>
+                    <p>Room {{thisuser.room.name}}</p>
+                    <p>{{thisuser.room.hostel.name}}</p>
                 </div>
             </div>
             <div class="profile-traits">
@@ -90,16 +94,9 @@
                     <p>Traits</p>
                 </div>
                 <div class="tags">
-                        {% for trait in user.traits %}
+                        {% for trait in thisuser.traits %}
                            <span class="tag"> {{trait}}</span>
                         {% endfor %}
-                    <!-- <span class="tag">Smokers</span>
-                    <span class="tag">Visitors</span>
-                    <span class="tag">Noisy</span>
-                    <span class="tag">Snores</span>
-                    <span class="tag">Nocturnal</span>
-                    <span class="tag">Cold Temperature</span>
-                <span class="tag">Music</span> -->
                 </div>
             </div>
             <div class="profile-traits">
@@ -107,7 +104,7 @@
                     <p>Looking for</p>
                 </div>
                 <div class="tags">
-                        {% for trait in user.roomie_traits %}
+                        {% for trait in thisuser.roomie_traits %}
                            <span class="tag"> {{trait}}</span>
                         {% endfor %}
                 </div>

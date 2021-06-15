@@ -10,7 +10,6 @@ trait_bp = Blueprint('trait_bp', __name__, template_folder='templates')
 @trait_bp.route('/', methods=['GET', 'POST'])
 @login_required
 def quiz_home():
-    # Send questions actually.
     return render_template('traits/start.html', user=current_user)
 
 

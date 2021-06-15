@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&family=Oswald:wght@500&family=Montserrat:wght@100;200;300;400;500;600;700;800&display=swapdisplay=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@500;600&display=swap");
 
 * {
   margin: 0;
@@ -8,7 +9,6 @@
 }
 
 body {
-  position: relative;
   min-height: 100vh;
   width: 100%;
   overflow: hidden;
@@ -46,8 +46,9 @@ body {
   pointer-events: none;
 }
 
-.logo_content .logo i {
-  font-size: 28px;
+.logo_content .logo img {
+  height: 28px;
+  width: 28px;
   margin-right: 2px;
 }
 
@@ -215,7 +216,7 @@ body {
   height: 45px;
   width: 45px;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 30px;
 }
 
 .profile .profile_details .name_room {
@@ -794,6 +795,19 @@ td:first-child {
   padding: 0 0.4rem;
 }
 
+.about-field {
+  max-width: 380px;
+  width: 100%;
+  height: 200px;
+  background: #fff;
+  margin: 10px auto auto auto;
+  border-radius: 55px;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0.4rem 10px 0.4rem;
+  padding-top: 20px;
+}
+
 .input-field i {
   text-align: center;
   line-height: 55px;
@@ -801,7 +815,8 @@ td:first-child {
   font-size: 1rem;
 }
 
-.input-field input {
+.input-field input,
+.about-field textarea {
   background: none;
   outline: none;
   border: none;
@@ -811,6 +826,9 @@ td:first-child {
   color: #355070;
 }
 
+textarea {
+  resize: none;
+}
 .input-field select {
   background: none;
   outline: none;
@@ -836,4 +854,212 @@ td:first-child {
 
 .upload-field p {
   font-size: 0.8em;
+}
+
+.profile-container {
+  height: 100%;
+  width: 100%;
+  padding: 0px 30px 0px 20px;
+  font-family: "Raleway", sans-serif;
+}
+
+.profile-top {
+  width: 100%;
+  height: 30%;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.profile-bottom {
+  width: 100%;
+  height: 70%;
+  display: flex;
+  /* margin-top: -; */
+  justify-content: space-between;
+}
+
+.profile-greeting {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  font-size: 24px;
+  /* background: cyan; */
+}
+
+.profile-img {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-img img {
+  object-fit: contain;
+  object-position: center;
+  height: 70px;
+  width: 70px;
+  border-radius: 40px;
+}
+.profile-name {
+  font-weight: 800;
+}
+.profile-school {
+  font-size: 10px;
+}
+
+.profile-left {
+  width: 65%;
+  height: 100%;
+  background: white;
+  display: grid;
+  grid-template-rows: 1fr 4fr 1.8fr;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.profile-right {
+  width: 30%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 0.5fr 2fr 2fr;
+  grid-row-gap: 5px;
+  margin-top: -10px;
+}
+
+.profile-assgn {
+  background: #fff;
+  display: grid;
+  width: 100%;
+  grid-template-rows: 1fr 2fr;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.profile-assgn-title {
+  height: 100%;
+  width: 100%;
+  font-size: 0.7em;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px 10px 20px;
+  border-bottom: 1px solid #aaa;
+}
+
+.profile-page__hostel-room {
+  padding-top: 20px;
+  padding-left: 20px;
+  font-size: 0.7em;
+  line-height: 1em;
+}
+
+.profile-traits {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  display: grid;
+  grid-template-rows: 1fr 3fr;
+}
+
+.profile-traits-header {
+  display: flex;
+  align-items: center;
+  font-size: 0.8em;
+  padding-left: 20px;
+  border-bottom: 1px solid #aaa;
+}
+
+.tags {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 5px;
+  text-justify: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 4px 8px;
+  border: 1px solid #e5eaed;
+  border-radius: 50px;
+  font-size: 10px;
+  font-weight: 600;
+  background-color: #c7cfd8;
+  color: #7d8799;
+}
+
+.profile-roomie {
+  background: coral;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.profile-student-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 50px;
+  padding-right: 50px;
+  border-bottom: 1px solid #aaa;
+}
+
+.profile-about-me {
+  border-top: 1px solid #aaa;
+  text-overflow: clip;
+  padding-left: 50px;
+  padding-right: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.profile-student-header h3 {
+  font-weight: 500;
+  font-size: 0.9em;
+}
+.profile-about-me h3 {
+  font-weight: 500;
+  font-size: 0.9em;
+  margin-bottom: 5px;
+}
+.profile-about-me p {
+  line-height: 1.3 em;
+  font-size: 0.8em;
+}
+
+.profile-edit-btn {
+  width: 120px;
+  height: 35px;
+  line-height: 30px;
+  border-radius: 5px;
+  box-shadow: none;
+}
+
+.profile-student-details {
+  padding-top: 30px;
+  padding-left: 1px;
+  display: grid;
+  grid-template-columns: 0.7fr 2fr;
+  grid-column-gap: 10px;
+}
+
+.profile-students-details__left {
+  text-align: right;
+  font-size: 0.8em;
+  line-height: 2.6em;
+  font-weight: 500;
+}
+
+.profile-students-details__right {
+  font-size: 0.8em;
+  line-height: 2.6em;
+  color: rgb(165, 165, 165);
 }

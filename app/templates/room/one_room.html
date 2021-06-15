@@ -1,7 +1,7 @@
 {% extends "user/dashboard.html" %}
 
 {% block content%}
-<div id="back_btn" onclick="window.history.back();">
+<div id="back_btn" onclick="window.location='/hostels/{{room.hostel.id}}';">
     <i class='bx bxs-left-arrow-circle' ></i>
 </div>
 <div class="room-container">
@@ -17,22 +17,20 @@
                 <p> <i class='bx bxs-bath'></i> Bathroom available</p>
             {% endif%}
             
-
-            
         </div>
         <div class="occupants_header">
             
             <h3><i class='bx bxs-user'></i> Occupants </h3></div>
         <div class="room_occupants">
   
-            {%for user in room.users %}
+            {%for user in room.occupants %}
                 <div class="card__container">
                     <div class="profile__img">
                         {% if user.photo_name %}
                         <img src={{ url_for('static', filename='img/user_photos/' + user.photo_name) }}  alt="profile pic">
                         {% else %}
                         <!-- <a href="https://www.vecteezy.com/free-vector/human">Human Vectors by Vecteezy</a> -->
-                        <img src={{ url_for('static', filename='img/user_photos/profile3.jpg')}} alt="profile pic">
+                        <img src={{ url_for('static', filename='img/user_photos/profile.jpg')}} alt="profile pic">
                         {% endif %}
                     </div>
                     <div class="text__content">
@@ -43,7 +41,7 @@
                                 {{trait}}{{',' if not loop.last else "."}}
                             {% endfor %}
                         </p>
-                        <div class="text__btn">
+                        <div class="text__btn" onclick="window.location='/user/{{user.id}}';">
                             <h3> More...</h3>
                         </div>
                     </div>
@@ -58,7 +56,7 @@
                     <div class="btn inverse-btn" onclick="window.location='/rooms/{{room.id}}/cancelReservation';">Cancel Reservation</div>
             {% else %}
                 <div class="room_btns one_room_btn">
-                    {% if room.users|length >= room.bedspace %}
+                    {% if room.occupants|length >= room.bedspace %}
                     <form action="{{ url_for('room_bp.room', roomId=room.id)}}" method="POST"> 
                         <button type="submit" class="btn inactive" disabled>Reserve Room</button>
                     </form>

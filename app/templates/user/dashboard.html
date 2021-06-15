@@ -9,43 +9,21 @@
     <title>Dashboard</title>
 </head>
 <body>
-    <div class="loader">
-        <img src={{ url_for('static', filename='img/user/loader.gif')}} alt='loading gif'>
-    </div>
     <div class="sidebar">
         <div class="logo_content">
             <div class="logo">
-                <i class='bx bxs-building-house'></i>
+                <img src="{{url_for('static', filename='img/user/roomly.png')}}" alt="">
                 <div class="logo_name">Room.ly</div>
             </div>
             <i class='bx bx-menu' id="toggle-sidebar-btn"></i>
         </div>
         <ul class="nav_list">
-            <!-- <li>  
-                <i class='bx bx-search' ></i>
-                 <input type="text" name="" id="" placeholder="Search...">
-                <span class="tooltip">Search</span>
-            </li> -->
-            <!-- <li>
-                <a href="/user/dashboard">
-                    <i class='bx bx-grid-alt' ></i>
-                    <span class="links_name">Dashboard</span>
-                </a>
-                <span class="tooltip">Dashboard</span>
-            </li> -->
             <li>
                 <a href="/user/traits">
                     <i class='bx bx-line-chart' ></i>
                     <span class="links_name">Traits</span>
                 </a>
                 <span class="tooltip">Traits</span>
-            </li>
-            <li>
-                <a href="/hostels">
-                    <i class='bx bx-building-house' ></i>
-                    <span class="links_name">Reserve Room</span>
-                </a>
-                <span class="tooltip">Reserve Room</span>
             </li>
             <li>
                 <a href="/user/profile">
@@ -55,12 +33,13 @@
                 <span class="tooltip">Profile</span>
             </li>
             <li>
-                <a href="/user/settings">
-                    <i class='bx bx-cog' ></i>
-                    <span class="links_name">Settings</span>
+                <a href="/hostels">
+                    <i class='bx bx-building-house' ></i>
+                    <span class="links_name">Reserve Room</span>
                 </a>
-                <span class="tooltip">Settings</span>
+                <span class="tooltip">Reserve Room</span>
             </li>
+
         </ul>
         <div class="profile_content">
             <div class="profile">

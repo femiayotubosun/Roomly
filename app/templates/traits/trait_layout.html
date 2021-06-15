@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link href={{ url_for('static', filename='boxicons-2.0.7/css/boxicons.min.css')}} rel='stylesheet'>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/trait/style.css') }}">
     <title>Roomly: Trait</title>
 </head>
 <body>
     <div class="wrapper">
       {% block content %}{% endblock %}
-    </div>
+  </div>
     <script src="{{  url_for('static', filename='js/trait/script.js') }}"></script>
 
 </body>

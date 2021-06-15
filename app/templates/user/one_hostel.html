@@ -1,5 +1,8 @@
 {% extends "user/dashboard.html" %}
 {% block content%}
+<div class="loader">
+  <img src={{ url_for('static', filename='img/user/loader.gif')}} alt='loading gif'>
+</div>
 <div id="back_btn" onclick="window.location='/hostels';">
     <i class='bx bxs-left-arrow-circle' ></i>
 </div>
@@ -47,7 +50,7 @@
                 <td class="error"></td>
             {% endif %}
             <td>{{ room.name }} </td>
-            <td>{{ room.users|length }} / {{ room.bedspace }}</td>
+            <td>{{ room.occupants|length }} / {{ room.bedspace }}</td>
             <td>
                 {% if room.bathroom %}
                     <i class='bx bxs-bath'></i>
@@ -64,6 +67,12 @@
     </div>
 </div>
 <script>
+/*   var loader = document.querySelector(".loader");
+  window.addEventListener("load", vanish);
+
+  function vanish() {
+    loader.classList.add("disappear");
+  } */
 
     // Sort Table function
     function sortTable(n) {

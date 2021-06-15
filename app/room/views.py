@@ -14,29 +14,23 @@ room_bp = Blueprint('room_bp', __name__, template_folder='templates')
 @login_required
 def room(roomId):
     # Check if user has done traits
-    user_traits = get_one_query(RoomieTrait, current_user.id)
+    user_traits = get_one_query(UserTrait, current_user.id)
     if not user_traits:
         flash('Please fill traits before picking your room', 'error')
         return redirect(url_for('user_bp.traits'))
 
     room = get_one_query(Room, roomId)
-    if user_traits and len(room.users) > 0:
-        for user in room.users:
+    if len(room.occupants) > 0:
+        for user in room.occupants:
             user.traits = []
-            room_mem_trait = get_one_query(UserTrait, user.id)
-
             for trait in db_traits:
-                if getattr(room_mem_trait, trait):
+                if getattr(user_traits, trait):
+                    print("Yes")
                     user.traits.append(traits_strings[trait])
-
-            if current_user.id == user.id:
-                user.match = "You"
-            else:
-                user.match = match_traits(current_user.id, user.id)
 
     # print(occupants_match)
     if request.method == 'POST':
-        if len(room.users) >= room.bedspace:
+        if len(room.occupants) >= room.bedspace:
             flash('This room is full.', 'fair')
             return redirect(url_for('room_bp.room', roomId=roomId))
 

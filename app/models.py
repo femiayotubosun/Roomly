@@ -134,6 +134,10 @@ class User(db.Model, UserMixin):
         db.String(255)
     )
 
+    about = db.Column(
+        db.Text
+    )
+
     photo_name = db.Column(
         db.String(255)
     )
@@ -144,7 +148,7 @@ class User(db.Model, UserMixin):
     )
 
     room = db.relationship(
-        'Room', backref='users'
+        'Room', backref='occupants'
     )
 
     def create(self):
