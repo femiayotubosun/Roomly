@@ -7,10 +7,12 @@
     <i class='bx bxs-left-arrow-circle' ></i>
 </div>
 <div class="hostel-container">
+  <!-- Set the hostel name -->
     <h3 class=hostel-name >{{hostel.name.upper()}}</h3>
 
     <div class="rooms-container">
     <h4>Rooms</h4>
+    <!-- Create a table -->
     <table id="match-rooms">
         <tr>
             <th></th>
@@ -19,7 +21,7 @@
             <th onclick="sortTable(3)">Bathroom <i class='bx bx-sort' ></th>
             <th onclick="sortTable(4)">Compatibility (%)<i class='bx bx-sort' ></i></th>
         </tr>
-
+        <!-- Loop through empty rooms -->
         {% for room in empty_rooms %}
         <tr onclick="window.location='/rooms/{{ room.id }}'">
             <td class="empty"></td>
@@ -28,18 +30,17 @@
             <td>
                 {% if room.bathroom %}
                     <i class='bx bxs-bath'></i>
-                    <!-- <i class='bx bx-check'></i> -->
                 {% else %}
                     <i class='bx bxs-bath empty_text'></i>
-  
                 {% endif %}
             </td>
             <td></td>
         </tr>
         {% endfor %}
-        {% for room in other_rooms %}
-        
 
+        <!-- Loop through occupied rooms -->
+        {% for room in other_rooms %}
+      
         <tr onclick="window.location='/rooms/{{ room.id }}';">
 
             {% if room.match >=70 %}
@@ -54,7 +55,6 @@
             <td>
                 {% if room.bathroom %}
                     <i class='bx bxs-bath'></i>
-                    <!-- <i class='bx bx-check'></i> -->
                 {% else %}
                     <i class='bx bxs-bath empty_text'></i>
   
@@ -67,12 +67,6 @@
     </div>
 </div>
 <script>
-/*   var loader = document.querySelector(".loader");
-  window.addEventListener("load", vanish);
-
-  function vanish() {
-    loader.classList.add("disappear");
-  } */
 
     // Sort Table function
     function sortTable(n) {

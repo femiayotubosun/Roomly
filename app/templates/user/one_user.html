@@ -1,115 +1,109 @@
-{% extends "user/dashboard.html" %}
-{% block content %}
+{% extends "user/dashboard.html" %} {% block content %}
 <div id="back_btn" onclick="window.history.back();">
-    <i class='bx bxs-left-arrow-circle' ></i>
+  <i class="bx bxs-left-arrow-circle"></i>
 </div>
 <div class="profile-container">
-    <div class="profile-top">
-        <div class="profile-greeting"><h3>{{thisuser.name.title()}}</h3></div>
-        <div class="profile-img">
-            {% if thisuser.photo_name %}
-            <img src={{  url_for('static', filename='img/user_photos/' + thisuser.photo_name ) }} alt="profile pic">
-            {% else %}
-            <img src={{  url_for('static', filename='img/user_photos/profile.jpg') }} alt="profile pic">
-            {% endif %}
-            <div class="profile-name">
-                {% if thisuser.name %}
-                    <div class="profile-name">{{ thisuser.name.title() }}</div>
-                {% else %}
-                    <div class="profile-name">{{ thisuser.username.title() }}</div>            
-                {% endif %}
-                    <div class="profile-school">
-                {% if thisuser.school %}
-                    <div class="profile-name">{{ thisuser.school.title() }}</div>
-                {% else%}
-                <div class="profile-namr">Not yet picked.</div>          
-                    {% endif %}
-                    </div>
-            </div>
+  <div class="profile-top">
+    <div class="profile-greeting"><h3>{{thisuser.name.title()}}</h3></div>
+    <div class="profile-img">
+      {% if thisuser.photo_name %} <img src={{ url_for('static',
+      filename='img/user_photos/' + thisuser.photo_name ) }} alt="profile pic">
+      {% else %} <img src={{ url_for('static',
+      filename='img/user_photos/profile.jpg') }} alt="profile pic"> {% endif %}
+      <div class="profile-name">
+        {% if thisuser.name %}
+        <div class="profile-name">{{ thisuser.name.title() }}</div>
+        {% else %}
+        <div class="profile-name">{{ thisuser.username.title() }}</div>
+        {% endif %}
+        <div class="profile-school">
+          {% if thisuser.school %}
+          <div class="profile-name">{{ thisuser.school.title() }}</div>
+          {% else%}
+          <div class="profile-namr">Not yet picked.</div>
+          {% endif %}
         </div>
+      </div>
     </div>
-    <div class="profile-bottom">
-        <div class="profile-left">
-            <div class="profile-student-header">
-                <h3>Student Information</h3>
-                <button class="btn inverse-btn profile-edit-btn" onclick="window.location='/user/edit_profile';">Edit Profile</button>
-            </div>
-            <div class="profile-student-details">
-                <div class="profile-students-details__left">
-                    <p>Name</p>
-                    <p>Username</p>
-                    <p>Email</p>
-                    <p>Phone Number</p>
-                    <p>Residential Address</p>
-                    <p>School</p>
-                </div>
-                <div class="profile-students-details__right">
-                    {% if thisuser.name %}
-                        <p>{{thisuser.name.title()}}</p>
-                    {% else %}
-                        <p></p>
-                    {%endif%}
-                        <p>{{thisuser.username}}</p>
-                        <p>{{thisuser.email}}</p>
-                    {% if thisuser.number %}
-                        <p>{{thisuser.number}}</p>
-                    {% else %}
-                        <p></p>
-                    {% endif %}
-                    {% if thisuser.address %}
-                        <p>{{thisuser.address}}</p>
-                    {% else %}
-                        <p></p>
-                    {% endif %}
-                    {% if thisuser.school %}
-                        <p>{{thisuser.school}}</p>
-                    {% else %}
-                        <p></p>
-                    {% endif %}
-                </div>
-            </div>
-            <div class="profile-about-me">
-                <h3>About me</h3>
-                {% if thisuser.about %}
-                <p style="color:#8998AB"> {{thisuser.about}}.</p>
-                {% else %}
-                <p style="color:#8998AB">...</p>
-                {% endif %}
-        
-            </div>
+  </div>
+  <div class="profile-bottom">
+    <div class="profile-left">
+      <div class="profile-student-header">
+        <h3>Student Information</h3>
+      </div>
+      <div class="profile-student-details">
+        <div class="profile-students-details__left">
+          <p>Name</p>
+          <p>Username</p>
+          <p>Email</p>
+          <p>Phone Number</p>
+          <p>Residential Address</p>
+          <p>School</p>
         </div>
-        <div class="profile-right">
-            <div class="profile-assgn">
-                <div class="profile-assgn-title">
-                    <p>Housing Assignment</p>
-                </div>
+        <div class="profile-students-details__right">
+          {% if thisuser.name %}
+          <p>{{thisuser.name.title()}}</p>
+          {% else %}
+          <p></p>
+          {%endif%}
+          <p>{{thisuser.username}}</p>
+          <p>{{thisuser.email}}</p>
+          {% if thisuser.number %}
+          <p>{{thisuser.number}}</p>
+          {% else %}
+          <p></p>
+          {% endif %} {% if thisuser.address %}
+          <p>{{thisuser.address}}</p>
+          {% else %}
+          <p></p>
+          {% endif %} {% if thisuser.school %}
+          <p>{{thisuser.school}}</p>
+          {% else %}
+          <p></p>
+          {% endif %}
+        </div>
+      </div>
+      <div class="profile-about-me">
+        <h3>About me</h3>
+        {% if thisuser.about %}
+        <p style="color: #8998ab">{{thisuser.about}}.</p>
+        {% else %}
+        <p style="color: #8998ab">...</p>
+        {% endif %}
+      </div>
+    </div>
+    <div class="profile-right">
+      <div class="profile-assgn">
+        <div class="profile-assgn-title">
+          <p>Housing Assignment</p>
+        </div>
 
-                <div class="profile-page__hostel-room">
-                    <p>Room {{thisuser.room.name}}</p>
-                    <p>{{thisuser.room.hostel.name}}</p>
-                </div>
-            </div>
-            <div class="profile-traits">
-                <div class="profile-traits-header">
-                    <p>Traits</p>
-                </div>
-                <div class="tags">
-                        {% for trait in thisuser.traits %}
-                           <span class="tag"> {{trait}}</span>
-                        {% endfor %}
-                </div>
-            </div>
-            <div class="profile-traits">
-                <div class="profile-traits-header">
-                    <p>Looking for</p>
-                </div>
-                <div class="tags">
-                        {% for trait in thisuser.roomie_traits %}
-                           <span class="tag"> {{trait}}</span>
-                        {% endfor %}
-                </div>
-            </div>
+        <div class="profile-page__hostel-room">
+          <p>Room {{thisuser.room.name}}</p>
+          <p>{{thisuser.room.hostel.name}}</p>
         </div>
+      </div>
+      <div class="profile-traits">
+        <div class="profile-traits-header">
+          <p>Traits</p>
+        </div>
+        <div class="tags">
+          {% for trait in thisuser.traits %}
+          <span class="tag"> {{trait}}</span>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="profile-traits">
+        <div class="profile-traits-header">
+          <p>Looking for</p>
+        </div>
+        <div class="tags">
+          {% for trait in thisuser.roomie_traits %}
+          <span class="tag"> {{trait}}</span>
+          {% endfor %}
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 {% endblock %}

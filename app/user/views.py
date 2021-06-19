@@ -55,7 +55,6 @@ def settings():
         name = request.form['name']
         address = request.form['address']
         school = request.form['school']
-        email = request.form['email']
         number = request.form['number']
         gender = request.form['gender']
         about = request.form['about']
@@ -66,8 +65,6 @@ def settings():
             current_user.address = address
         if school:
             current_user.school = school
-        if email:
-            current_user.email = email
         if number:
             current_user.number = number
         if about:

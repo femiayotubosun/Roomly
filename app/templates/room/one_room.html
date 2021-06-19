@@ -38,7 +38,7 @@
                         <h2>Traits</h2>
                         <p class="text__description">
                             {% for trait in user.traits %}
-                                {{trait}}{{',' if not loop.last else "."}}
+                                {{trait}}{{',' if not loop.last else "..."}}
                             {% endfor %}
                         </p>
                         <div class="text__btn" onclick="window.location='/user/{{user.id}}';">
@@ -66,18 +66,7 @@
                     </form>
                     {% endif %}
             {% endif %}
-
-
         </div>
- 
     </div>
-
-
-
-
-
-    </div>
-
-
-
+</div>
 {%endblock%}

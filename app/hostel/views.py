@@ -56,20 +56,28 @@ def hostel(id):
 
     # Do match for occupied rooms.
     for room in occupied_rooms:
-        accum = 0
-        room_mem = 0
+        # To get the total room match average.
+        # We need to get the total sum of matches and divide it by the room_mem
+        # If the current logged in user in that room, we don't want to add him
+        # To this calculation, it wouldn't really makes sense.
+        sum_of_matches = 0
+        room_mem = len(room.occupants)
+        # room members are in room.occupants, loop through them
         for user in room.occupants:
+            # If the user in the current looop is the logged in user, skip
             if(user.id == current_user.id):
-                continue
+                room_mem -= 1
             else:
-                room_mem += 1
-                accum += match_traits(current_user.id, user.id)
+                sum_of_matches += match_traits(current_user.id, user.id)
 
+        # This means that its only the current_user that is in that room.
+        # Because room_mem doesn't increase. His match percentage is perfect then.
         if room_mem == 0:
             match_percentage = 100
         else:
-            match_percentage = round(accum / room_mem)
+            match_percentage = round(sum_of_matches / room_mem)
 
+        # Add a new attribute to the room, save the it in match, so we can use it in the frontend
         room.match = match_percentage
 
     return render_template('user/one_hostel.html', user=current_user, hostel=hostel, empty_rooms=empty_rooms, other_rooms=occupied_rooms)
