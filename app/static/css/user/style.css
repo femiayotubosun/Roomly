@@ -53,11 +53,6 @@ body {
   object-fit: contain;
 }
 
-.logo_content .logo .logo_name {
-  /* font-size: 20px;
-  font-weight: 400; */
-}
-
 .sidebar #toggle-sidebar-btn {
   position: absolute;
   color: #fff;
