@@ -1,7 +1,7 @@
 # Roomly
 
 
-![Python](https://img.shields.io/badge/Python-3.9-blue) ![Flask](https://img.shields.io/badge/Flask-2.0-blue)[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/femiayotubosun/roomly/blob/main/.LICENSE)
+![Python](https://img.shields.io/badge/Python-3.9-blue) ![Flask](https://img.shields.io/badge/Flask-2.0-blue)[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/femiayotubosun/roomly/blob/main/LICENSE)
 
 Roomly is a roommate matching system written with Flask.
 
